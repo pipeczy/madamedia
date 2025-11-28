@@ -44,3 +44,54 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ============================================================================
+// STATS COUNTER ANIMATION - Count up effect increible
+// ============================================================================
+function animateCounter(element, target, duration = 2000) {
+  const start = 0;
+  const increment = target / (duration / 16); // 60fps
+  let current = start;
+
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+
+    // Format number with commas for readability
+    const displayValue = Math.floor(current);
+
+    // Handle special cases like "M+" for millions
+    const suffix = element.dataset.suffix || '+';
+    if (suffix === 'M+') {
+      element.textContent = '1M+';
+    } else {
+      element.textContent = displayValue + suffix;
+    }
+  }, 16);
+}
+
+// Intersection Observer para activar la animacion cuando sea visible
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const statNumbers = entry.target.querySelectorAll('[data-target]');
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.dataset.target);
+        animateCounter(stat, target, 2000);
+      });
+      // Solo animar una vez
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.5 // Activar cuando 50% del elemento es visible
+});
+
+// Observar el grid de stats
+const statsGrid = document.getElementById('statsGrid');
+if (statsGrid) {
+  statsObserver.observe(statsGrid);
+}

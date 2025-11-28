@@ -135,41 +135,7 @@
           generar presencia digital sólida y hacer crecer su marca en redes sociales con resultados medibles.
         </p>
 
-        <!-- Bullets -->
-        <div class="grid sm:grid-cols-2 gap-2.5 mb-8 animate-slide-up animation-delay-400">
-          <div class="flex items-center gap-2.5 text-left group">
-            <div class="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
-              <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <span class="text-neutral-300 text-sm group-hover:text-white transition-colors">Videos y Reels de alto impacto</span>
-          </div>
-          <div class="flex items-center gap-2.5 text-left group">
-            <div class="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
-              <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <span class="text-neutral-300 text-sm group-hover:text-white transition-colors">Diseño y copywriting que vende</span>
-          </div>
-          <div class="flex items-center gap-2.5 text-left group">
-            <div class="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
-              <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <span class="text-neutral-300 text-sm group-hover:text-white transition-colors">Community management completo</span>
-          </div>
-          <div class="flex items-center gap-2.5 text-left group">
-            <div class="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
-              <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <span class="text-neutral-300 text-sm group-hover:text-white transition-colors">Reportes y optimización continua</span>
-          </div>
-        </div>
+        
 
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row items-center lg:items-start gap-3 animate-slide-up animation-delay-600">
@@ -188,34 +154,68 @@
 
       <!-- Right Side - Stats Grid -->
       <div class="hidden lg:flex items-center justify-center relative animate-fade-in animation-delay-400">
-        <!-- Decorative animated border -->
-        <div class="absolute -inset-4 bg-gradient-to-r from-accent/20 to-accent-light/20 rounded-3xl blur-xl"></div>
-        <div class="absolute inset-0 rounded-3xl border-2 border-accent/30 transform rotate-6 pointer-events-none"></div>
-        
+        <!-- Animated particles background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <div class="particle particle-1"></div>
+          <div class="particle particle-2"></div>
+          <div class="particle particle-3"></div>
+          <div class="particle particle-4"></div>
+          <div class="particle particle-5"></div>
+        </div>
+
+        <!-- Decorative animated border with gradient rotation -->
+        <div class="absolute -inset-6 bg-gradient-to-r from-accent/20 via-accent-light/30 to-accent/20 rounded-3xl blur-2xl animate-pulse-slow"></div>
+        <div class="absolute inset-0 rounded-3xl border-2 border-accent/40 transform rotate-6 pointer-events-none animate-border-rotate"></div>
+        <div class="absolute inset-0 rounded-3xl border border-accent-light/20 transform -rotate-6 pointer-events-none animate-border-rotate-reverse"></div>
+
         <!-- Stats Grid 2x2 -->
-        <div class="relative grid grid-cols-2 gap-4">
+        <div class="relative grid grid-cols-2 gap-5" id="statsGrid">
           <!-- Stat Card 1 -->
-          <div class="stat-card group p-6 bg-neutral-900/90 backdrop-blur-sm border border-neutral-800 rounded-2xl text-center transition-all duration-500 hover:scale-105 hover:bg-neutral-900 hover:border-accent/50 cursor-pointer hover:shadow-xl hover:shadow-accent/20">
-            <div class="text-4xl font-bold text-gradient mb-1.5 font-display transition-transform duration-500 group-hover:scale-110">50+</div>
-            <div class="text-neutral-400 text-xs transition-colors duration-300 group-hover:text-neutral-300">Clientes Satisfechos</div>
+          <div class="stat-card-enhanced group p-8 bg-gradient-to-br from-neutral-900/95 to-neutral-800/90 backdrop-blur-sm border border-neutral-700 rounded-2xl text-center transition-all duration-700 hover:scale-110 hover:border-accent/70 cursor-pointer hover:shadow-2xl hover:shadow-accent/30 relative overflow-hidden" style="animation-delay: 0.1s">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent-light/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="absolute top-0 left-0 w-full h-full shimmer"></div>
+            <div class="relative z-10">
+              <div class="text-5xl font-bold text-gradient mb-2 font-display transition-all duration-700 group-hover:scale-125" data-target="50">0</div>
+              <div class="text-neutral-400 text-xs font-medium transition-colors duration-300 group-hover:text-accent-light tracking-wider">Clientes Satisfechos</div>
+            </div>
+            <div class="sparkle sparkle-1"></div>
+            <div class="sparkle sparkle-2"></div>
           </div>
 
           <!-- Stat Card 2 -->
-          <div class="stat-card group p-6 bg-neutral-900/90 backdrop-blur-sm border border-neutral-800 rounded-2xl text-center transition-all duration-500 hover:scale-105 hover:bg-neutral-900 hover:border-accent/50 cursor-pointer hover:shadow-xl hover:shadow-accent/20">
-            <div class="text-4xl font-bold text-gradient mb-1.5 font-display transition-transform duration-500 group-hover:scale-110">200+</div>
-            <div class="text-neutral-400 text-xs transition-colors duration-300 group-hover:text-neutral-300">Videos Producidos</div>
+          <div class="stat-card-enhanced group p-8 bg-gradient-to-br from-neutral-900/95 to-neutral-800/90 backdrop-blur-sm border border-neutral-700 rounded-2xl text-center transition-all duration-700 hover:scale-110 hover:border-accent/70 cursor-pointer hover:shadow-2xl hover:shadow-accent/30 relative overflow-hidden" style="animation-delay: 0.2s">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent-light/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="absolute top-0 left-0 w-full h-full shimmer"></div>
+            <div class="relative z-10">
+              <div class="text-5xl font-bold text-gradient mb-2 font-display transition-all duration-700 group-hover:scale-125" data-target="200">0</div>
+              <div class="text-neutral-400 text-xs font-medium transition-colors duration-300 group-hover:text-accent-light tracking-wider">Videos Producidos</div>
+            </div>
+            <div class="sparkle sparkle-1"></div>
+            <div class="sparkle sparkle-2"></div>
           </div>
 
           <!-- Stat Card 3 -->
-          <div class="stat-card group p-6 bg-neutral-900/90 backdrop-blur-sm border border-neutral-800 rounded-2xl text-center transition-all duration-500 hover:scale-105 hover:bg-neutral-900 hover:border-accent/50 cursor-pointer hover:shadow-xl hover:shadow-accent/20">
-            <div class="text-4xl font-bold text-gradient mb-1.5 font-display transition-transform duration-500 group-hover:scale-110">1M+</div>
-            <div class="text-neutral-400 text-xs transition-colors duration-300 group-hover:text-neutral-300">Alcance Generado</div>
+          <div class="stat-card-enhanced group p-8 bg-gradient-to-br from-neutral-900/95 to-neutral-800/90 backdrop-blur-sm border border-neutral-700 rounded-2xl text-center transition-all duration-700 hover:scale-110 hover:border-accent/70 cursor-pointer hover:shadow-2xl hover:shadow-accent/30 relative overflow-hidden" style="animation-delay: 0.3s">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent-light/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="absolute top-0 left-0 w-full h-full shimmer"></div>
+            <div class="relative z-10">
+              <div class="text-5xl font-bold text-gradient mb-2 font-display transition-all duration-700 group-hover:scale-125" data-target="1000000" data-suffix="M+">0</div>
+              <div class="text-neutral-400 text-xs font-medium transition-colors duration-300 group-hover:text-accent-light tracking-wider">Alcance Generado</div>
+            </div>
+            <div class="sparkle sparkle-1"></div>
+            <div class="sparkle sparkle-2"></div>
           </div>
 
           <!-- Stat Card 4 -->
-          <div class="stat-card group p-6 bg-neutral-900/90 backdrop-blur-sm border border-neutral-800 rounded-2xl text-center transition-all duration-500 hover:scale-105 hover:bg-neutral-900 hover:border-accent/50 cursor-pointer hover:shadow-xl hover:shadow-accent/20">
-            <div class="text-4xl font-bold text-gradient mb-1.5 font-display transition-transform duration-500 group-hover:scale-110">4</div>
-            <div class="text-neutral-400 text-xs transition-colors duration-300 group-hover:text-neutral-300">Años de Experiencia</div>
+          <div class="stat-card-enhanced group p-8 bg-gradient-to-br from-neutral-900/95 to-neutral-800/90 backdrop-blur-sm border border-neutral-700 rounded-2xl text-center transition-all duration-700 hover:scale-110 hover:border-accent/70 cursor-pointer hover:shadow-2xl hover:shadow-accent/30 relative overflow-hidden" style="animation-delay: 0.4s">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent-light/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="absolute top-0 left-0 w-full h-full shimmer"></div>
+            <div class="relative z-10">
+              <div class="text-5xl font-bold text-gradient mb-2 font-display transition-all duration-700 group-hover:scale-125" data-target="4">0</div>
+              <div class="text-neutral-400 text-xs font-medium transition-colors duration-300 group-hover:text-accent-light tracking-wider">Años de Experiencia</div>
+            </div>
+            <div class="sparkle sparkle-1"></div>
+            <div class="sparkle sparkle-2"></div>
           </div>
         </div>
       </div>
