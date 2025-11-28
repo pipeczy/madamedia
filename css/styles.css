@@ -45,14 +45,30 @@ h1, h2, h3, h4, h5, h6 {
   .parallax-fast,
   .animate-fade-in,
   .animate-slide-up,
-  [class*="animation-delay"] {
+  [class*="animation-delay"],
+  .floating,
+  .floating-delayed,
+  .stat-card-enhanced,
+  .shimmer,
+  .sparkle,
+  .particle,
+  .animate-border-rotate,
+  .animate-border-rotate-reverse,
+  .animate-pulse-slow {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;
   }
+
+  .stat-card-enhanced {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
-/* Animaciones de entrada */
+/* ==========================================================================
+   ANIMACIONES HERO
+   ========================================================================== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -69,6 +85,16 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 74, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 74, 0.6); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
@@ -81,7 +107,242 @@ h1, h2, h3, h4, h5, h6 {
 .animation-delay-400 { animation-delay: 0.4s; opacity: 0; }
 .animation-delay-600 { animation-delay: 0.6s; opacity: 0; }
 
-/* Card hover effects */
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* ==========================================================================
+   STAT CARDS - Efectos interactivos MEJORADOS
+   ========================================================================== */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 74, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+/* Enhanced stat cards con animaciones increibles */
+.stat-card-enhanced {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: statCardEntrance 0.8s ease-out forwards;
+}
+
+@keyframes statCardEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Shimmer effect - brillo que se mueve */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 107, 74, 0.1) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+}
+
+.stat-card-enhanced:hover .shimmer {
+  animation: shimmerMove 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmerMove {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* Sparkles - destellos decorativos */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-accent-light);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sparkle-1 {
+  top: 20%;
+  right: 20%;
+}
+
+.sparkle-2 {
+  bottom: 30%;
+  left: 15%;
+}
+
+.stat-card-enhanced:hover .sparkle {
+  animation: sparkleAnimation 1.5s ease-in-out infinite;
+}
+
+.stat-card-enhanced:hover .sparkle-2 {
+  animation-delay: 0.3s;
+}
+
+@keyframes sparkleAnimation {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Floating particles background */
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, var(--color-accent-light) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.particle-1 {
+  width: 80px;
+  height: 80px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  width: 60px;
+  height: 60px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 1.5s;
+}
+
+.particle-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 3s;
+}
+
+.particle-4 {
+  width: 50px;
+  height: 50px;
+  top: 40%;
+  right: 30%;
+  animation-delay: 4.5s;
+}
+
+.particle-5 {
+  width: 70px;
+  height: 70px;
+  bottom: 15%;
+  right: 20%;
+  animation-delay: 2s;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(10px, -15px) scale(1.1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-5px, -25px) scale(0.9);
+    opacity: 0.15;
+  }
+  75% {
+    transform: translate(15px, -10px) scale(1.05);
+    opacity: 0.25;
+  }
+}
+
+/* Border rotation animations */
+@keyframes borderRotate {
+  0% {
+    transform: rotate(6deg) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: rotate(8deg) scale(1.02);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(6deg) scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes borderRotateReverse {
+  0% {
+    transform: rotate(-6deg) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: rotate(-8deg) scale(1.02);
+    opacity: 0.4;
+  }
+  100% {
+    transform: rotate(-6deg) scale(1);
+    opacity: 0.2;
+  }
+}
+
+.animate-border-rotate {
+  animation: borderRotate 4s ease-in-out infinite;
+}
+
+.animate-border-rotate-reverse {
+  animation: borderRotateReverse 5s ease-in-out infinite;
+}
+
+/* Pulse slow para el glow background */
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   CARD HOVER EFFECTS
+   ========================================================================== */
 .card-hover {
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
               box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -92,7 +353,9 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 25px 50px -12px rgba(255, 107, 74, 0.15);
 }
 
-/* Gradient text */
+/* ==========================================================================
+   GRADIENT TEXT
+   ========================================================================== */
 .text-gradient {
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
   -webkit-background-clip: text;
@@ -100,7 +363,9 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
-/* Video overlay */
+/* ==========================================================================
+   VIDEO OVERLAY
+   ========================================================================== */
 .video-overlay {
   background: linear-gradient(
     to bottom,
@@ -110,7 +375,9 @@ h1, h2, h3, h4, h5, h6 {
   );
 }
 
-/* Custom scrollbar */
+/* ==========================================================================
+   CUSTOM SCROLLBAR
+   ========================================================================== */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -128,7 +395,9 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-accent);
 }
 
-/* FAQ animation */
+/* ==========================================================================
+   FAQ ANIMATION
+   ========================================================================== */
 .faq-content {
   max-height: 0;
   overflow: hidden;
@@ -139,7 +408,9 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 300px;
 }
 
-/* Portfolio hover */
+/* ==========================================================================
+   PORTFOLIO HOVER
+   ========================================================================== */
 .portfolio-card .portfolio-cta {
   opacity: 0;
   transform: translateY(1rem);
