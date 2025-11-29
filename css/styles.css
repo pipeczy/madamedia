@@ -1004,4 +1004,31 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ==========================================================================
+   HERO VIDEO BACKGROUND - Gradiente diagonal para difuminar video
+   ========================================================================== */
+
+/* Gradiente diagonal que va de transparente a oscuro */
+.bg-gradient-diagonal {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.6) 60%,
+    rgba(0, 0, 0, 0.85) 80%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+/* Estilos adicionales para el video de fondo - Vimeo iframe */
+#heroVideo {
+  opacity: 0.25 !important;
+}
+
+#heroVideo iframe {
+  opacity: 0.3;
+}
+
 

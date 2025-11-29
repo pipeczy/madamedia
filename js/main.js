@@ -96,3 +96,10 @@ if (statsGrid) {
   statsObserver.observe(statsGrid);
 }
 
+// ============================================================================
+// HERO VIDEO BACKGROUND - Vimeo iframe con autoplay y loop
+// ============================================================================
+// El video de Vimeo se reproduce automáticamente gracias a los parámetros:
+// autoplay=1, loop=1, muted=1, background=1
+// No se requiere JavaScript adicional para controlar la reproducción
+
