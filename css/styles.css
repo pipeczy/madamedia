@@ -1032,3 +1032,59 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+/* ===============================================
+   VIDEO DEL GRID — Estilo Pro
+   =============================================== */
+
+/* Hace que el video no aparezca los primeros ms
+   (evita el avatar, título y botones de YouTube)
+*/
+.video-card-embed {
+  opacity: 0;
+  filter: blur(0px);   /* si quieres blur, aumentamos aquí */
+  animation: videoCardFadeIn 0.7s ease forwards;
+  animation-delay: 0.55s; /* Ajusta si ves YouTube cargando lento */
+}
+
+@keyframes videoCardFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Opcional: para dejar los videos más tenues */
+.video-card-embed iframe {
+  opacity: 0.75; /* ajustable: 0.5 más tenue, 1.0 brillante */
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .video-card-embed iframe {
+  opacity: 1; /* al pasar el mouse se ve más brillante */
+}
+
+/* Para que el iframe cubra siempre el card */
+.video-card-embed iframe {
+  object-fit: cover;
+}
+
+
+/* ============================
+   Videos del grid (Shorts)
+   ============================ */
+.video-card-embed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Hacemos el iframe más ancho y lo centramos
+   para recortar las bandas negras laterales   */
+.video-card-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 180%;   /* prueba 170–200% según veas */
+  height: 100%;
+  transform: translateX(-50%);
+  border: 0;
+}
