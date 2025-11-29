@@ -230,7 +230,65 @@
        PORTAFOLIO - Grid de proyectos
        ========================================================================== -->
   <section id="portafolio" class="relative py-24 lg:py-32 overflow-hidden">
+    <!-- Animated background elements -->
     <div class="parallax-fast absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl"></div>
+
+    <!-- Floating orbs for background depth -->
+    <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/15 to-transparent rounded-full blur-3xl floating-bg-orb-1 pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/3 w-72 h-72 bg-gradient-to-r from-transparent to-accent/10 rounded-full blur-3xl floating-bg-orb-2 pointer-events-none"></div>
+
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: linear-gradient(rgba(255, 107, 74, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 107, 74, 0.3) 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+    <!-- Animated gradient borders -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 animate-border-glow"></div>
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 animate-border-glow-reverse"></div>
+
+    <!-- Floating lines animation -->
+    <div class="absolute top-1/4 left-0 w-1/3 h-px bg-gradient-to-r from-accent/0 via-accent/30 to-accent/0 floating-line-1 pointer-events-none"></div>
+    <div class="absolute top-3/4 right-0 w-1/2 h-px bg-gradient-to-r from-accent/0 via-accent/25 to-accent/0 floating-line-2 pointer-events-none"></div>
+    <div class="absolute top-1/2 right-1/4 w-40 h-px bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 floating-line-3 pointer-events-none"></div>
+
+    <!-- Animated corner accents -->
+    <div class="absolute -top-1 -left-1 w-40 h-40 border-2 border-accent/10 rounded-br-full pointer-events-none corner-accent-1"></div>
+    <div class="absolute -bottom-1 -right-1 w-60 h-60 border-2 border-accent/5 rounded-tl-full pointer-events-none corner-accent-2"></div>
+
+    <!-- Glow lights - Luces animadas con glow effect -->
+    <!-- Light 1 - Top Left -->
+    <div class="absolute top-20 left-1/4 -translate-x-1/2 w-96 h-96 rounded-full pointer-events-none glow-light-1">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-1" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.4) 0%, rgba(255, 107, 74, 0.2) 40%, transparent 70%);"></div>
+      <div class="absolute inset-4 rounded-full blur-2xl animate-glow-pulse-2" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.3) 0%, rgba(255, 107, 74, 0.1) 40%, transparent 70%); animation-delay: 0.3s;"></div>
+    </div>
+
+    <!-- Light 2 - Top Right -->
+    <div class="absolute top-1/3 right-1/5 translate-x-1/2 w-80 h-80 rounded-full pointer-events-none glow-light-2">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-3" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.35) 0%, rgba(255, 107, 74, 0.15) 40%, transparent 70%);"></div>
+      <div class="absolute inset-6 rounded-full blur-2xl animate-glow-pulse-4" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.2) 0%, rgba(255, 107, 74, 0.05) 40%, transparent 70%); animation-delay: 0.5s;"></div>
+    </div>
+
+    <!-- Light 3 - Bottom Center -->
+    <div class="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full pointer-events-none glow-light-3">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-1" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.3) 0%, rgba(255, 107, 74, 0.1) 40%, transparent 70%); animation-delay: 0.7s;"></div>
+      <div class="absolute inset-8 rounded-full blur-2xl animate-glow-pulse-2" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.2) 0%, transparent 50%); animation-delay: 0.2s;"></div>
+    </div>
+
+    <!-- Light 4 - Middle Right (subtle) -->
+    <div class="absolute top-1/2 right-1/4 translate-x-1/4 w-64 h-64 rounded-full pointer-events-none glow-light-4">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-3" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.25) 0%, rgba(255, 107, 74, 0.1) 40%, transparent 70%); animation-delay: 1s;"></div>
+      <div class="absolute inset-10 rounded-full blur-2xl animate-glow-pulse-4" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.15) 0%, transparent 50%); animation-delay: 0.4s;"></div>
+    </div>
+
+    <!-- Light 5 - Bottom Left (accent) -->
+    <div class="absolute bottom-1/3 left-1/5 -translate-x-1/3 w-60 h-60 rounded-full pointer-events-none glow-light-5">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-2" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.35) 0%, rgba(255, 107, 74, 0.12) 40%, transparent 70%); animation-delay: 0.6s;"></div>
+      <div class="absolute inset-12 rounded-full blur-xl animate-glow-pulse-1" style="background: radial-gradient(circle at center, rgba(255, 107, 74, 0.15) 0%, transparent 50%); animation-delay: 0.1s;"></div>
+    </div>
+
+    <!-- Floating glow particles -->
+    <div class="absolute top-1/3 left-1/3 w-2 h-2 rounded-full bg-accent pointer-events-none glow-particle-1"></div>
+    <div class="absolute top-2/3 right-1/4 w-1.5 h-1.5 rounded-full bg-accent/80 pointer-events-none glow-particle-2"></div>
+    <div class="absolute bottom-1/4 left-1/2 w-1 h-1 rounded-full bg-accent pointer-events-none glow-particle-3"></div>
+    <div class="absolute top-1/4 right-1/3 w-2 h-2 rounded-full bg-accent/70 pointer-events-none glow-particle-4"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
