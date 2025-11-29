@@ -1087,3 +1087,101 @@ h1, h2, h3, h4, h5, h6 {
     filter: drop-shadow(0 0 15px rgba(255, 107, 74, 1)) blur(0px);
   }
 }
+
+/* ==========================================================================
+   HERO LOGO - Logo flotante de MadaMedia con efecto de flotación
+   ========================================================================== */
+
+/* Animación de flotación suave del logo */
+@keyframes floatLogo {
+  0%, 100% {
+    transform: translateY(0) rotateZ(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-15px) rotateZ(1deg) scale(1.02);
+  }
+  50% {
+    transform: translateY(-30px) rotateZ(0deg) scale(1);
+  }
+  75% {
+    transform: translateY(-10px) rotateZ(-1deg) scale(1.01);
+  }
+}
+
+.animate-float-logo {
+  animation: floatLogo 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Glow pulse para el fondo del logo */
+@keyframes floatGlowPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Partículas orbitales alrededor del logo */
+@keyframes orbitParticle1 {
+  0% {
+    transform: rotateZ(0deg) translateX(192px) rotateZ(-0deg);
+  }
+  100% {
+    transform: rotateZ(360deg) translateX(192px) rotateZ(-360deg);
+  }
+}
+
+@keyframes orbitParticle2 {
+  0% {
+    transform: rotateZ(90deg) translateX(192px) rotateZ(-90deg);
+  }
+  100% {
+    transform: rotateZ(450deg) translateX(192px) rotateZ(-450deg);
+  }
+}
+
+@keyframes orbitParticle3 {
+  0% {
+    transform: rotateZ(180deg) translateX(192px) rotateZ(-180deg);
+  }
+  100% {
+    transform: rotateZ(540deg) translateX(192px) rotateZ(-540deg);
+  }
+}
+
+@keyframes orbitParticle4 {
+  0% {
+    transform: rotateZ(270deg) translateX(192px) rotateZ(-270deg);
+  }
+  100% {
+    transform: rotateZ(630deg) translateX(192px) rotateZ(-630deg);
+  }
+}
+
+.animate-orbit-particle-1 {
+  animation: orbitParticle1 8s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.animate-orbit-particle-2 {
+  animation: orbitParticle2 8s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.animate-orbit-particle-3 {
+  animation: orbitParticle3 8s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.animate-orbit-particle-4 {
+  animation: orbitParticle4 8s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
