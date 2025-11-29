@@ -1125,3 +1125,83 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ==========================================================================
+   ORBITING LIGHTS - Partículas orbitales alrededor de luces de glow
+   Añade dinamismo y movimiento a las luces principales
+   ========================================================================== */
+
+@keyframes orbitalLight1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitalLight2 {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes orbitalLight3 {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(540deg);
+  }
+}
+
+@keyframes orbitalLight4 {
+  0% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(630deg);
+  }
+}
+
+@keyframes orbitalLight5 {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+
+.animate-orbital-light-1 {
+  animation: orbitalLight1 12s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.animate-orbital-light-2 {
+  animation: orbitalLight2 14s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.animate-orbital-light-3 {
+  animation: orbitalLight3 16s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.animate-orbital-light-4 {
+  animation: orbitalLight4 18s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
+.animate-orbital-light-5 {
+  animation: orbitalLight5 20s linear infinite;
+  will-change: transform;
+  transform-origin: center;
+}
+
