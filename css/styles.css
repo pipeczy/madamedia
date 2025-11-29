@@ -423,49 +423,69 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   HEADER NAVIGATION - Hover Effects con barrita animada
+   HEADER NAVIGATION - Hover Effects con barrita animada MEJORADO
    ========================================================================== */
 .nav-link {
   position: relative;
   display: inline-block;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  letter-spacing: 0.3px;
 }
 
+/* Barrita naranja animada con brillo */
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
-  transition: width 0.3s ease-out, opacity 0.3s ease-out;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease-out, box-shadow 0.35s ease-out;
   opacity: 0;
   border-radius: 2px;
+  box-shadow: 0 0 0 rgba(255, 107, 74, 0);
 }
 
 .nav-link:hover::after {
   width: 100%;
   opacity: 1;
+  box-shadow: 0 0 8px rgba(255, 107, 74, 0.6), 0 0 12px rgba(255, 107, 74, 0.4);
 }
 
-/* Efecto de brillo adicional */
+/* Efecto de brillo adicional más intenso */
 .nav-link::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(255, 107, 74, 0.15) 0%, transparent 70%);
-  border-radius: 8px;
-  transition: transform 0.4s ease-out;
+  width: 120%;
+  height: 150%;
+  background: radial-gradient(ellipse, rgba(255, 107, 74, 0.25) 0%, rgba(255, 107, 74, 0.12) 40%, transparent 70%);
+  border-radius: 12px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-out;
   z-index: -1;
+  opacity: 0;
 }
 
 .nav-link:hover::before {
-  transform: translate(-50%, -50%) scale(1.2);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Animación sutil de pulso en hover */
+@keyframes navPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+.nav-link:hover::before {
+  animation: navPulse 2s ease-in-out infinite;
 }
 
 /* ==========================================================================
