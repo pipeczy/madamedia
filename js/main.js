@@ -95,3 +95,4 @@ const statsGrid = document.getElementById('statsGrid');
 if (statsGrid) {
   statsObserver.observe(statsGrid);
 }
+

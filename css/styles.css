@@ -421,3 +421,291 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ==========================================================================
+   PROCESO - Claqueta de Cine con Animación
+   ========================================================================== */
+.clapperboard {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.25rem;
+}
+
+/* Contenedor de la claqueta con el hinche */
+.clapper-hinge {
+  position: relative;
+  height: 80px;
+  margin-bottom: 0.75rem;
+  perspective: 1000px;
+}
+
+/* Parte inferior fija */
+.clapper-base {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(90deg,
+    rgba(255, 107, 74, 0.2),
+    rgba(255, 107, 74, 0.3),
+    rgba(255, 107, 74, 0.2)
+  );
+  border: 2px solid rgba(255, 107, 74, 0.4);
+  border-radius: 0 0 0.75rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 1rem;
+}
+
+/* Líneas blancas y negras de la claqueta */
+.clapper-stripe {
+  display: inline-block;
+  width: 5px;
+  height: 22px;
+  background: linear-gradient(90deg,
+    white 0%,
+    white 50%,
+    black 50%,
+    black 100%
+  );
+}
+
+/* Parte móvil (se abre y cierra) */
+.clapper-top {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-accent),
+    var(--color-accent) 10px,
+    rgba(10, 10, 10, 0.6) 10px,
+    rgba(10, 10, 10, 0.6) 20px
+  );
+  border: 2px solid var(--color-accent);
+  border-radius: 0.75rem 0.75rem 0 0;
+  transform-origin: bottom center;
+  animation: clapperOpen 2.5s ease-in-out infinite;
+  box-shadow: 0 4px 12px rgba(255, 107, 74, 0.3);
+}
+
+@keyframes clapperOpen {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateX(-140deg);
+    opacity: 0.9;
+  }
+  70% {
+    transform: rotateX(-140deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* Texto de la claqueta */
+.clapper-info {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+  padding: 0.5rem 0;
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.clapper-info span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.clapper-info span:first-child {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+/* Animación sutil de enfoque/desenfoque para efecto cinematográfico */
+@keyframes filmFlash {
+  0% {
+    box-shadow: inset 0 0 20px rgba(255, 107, 74, 0);
+  }
+  50% {
+    box-shadow: inset 0 0 30px rgba(255, 107, 74, 0.15);
+  }
+  100% {
+    box-shadow: inset 0 0 20px rgba(255, 107, 74, 0);
+  }
+}
+
+.process-card {
+  animation: filmFlash 4s ease-in-out infinite;
+  position: relative;
+}
+
+.process-card:hover {
+  animation: filmFlash 2s ease-in-out infinite;
+}
+
+.process-card:hover .clapper-top {
+  animation: clapperOpen 1.5s ease-in-out infinite;
+}
+
+/* Líneas cinematográficas decorativas en la parte inferior */
+.film-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-accent) 0px,
+    var(--color-accent) 3px,
+    transparent 3px,
+    transparent 12px
+  );
+  opacity: 0.08;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.process-card:hover .film-strip {
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   ANIMACIONES REPRESENTATIVAS POR PASO
+   ========================================================================== */
+
+/* Paso 1: Planificación - Círculos concéntricos */
+.process-card:nth-child(1)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: concentricPulse 3s ease-in-out infinite;
+  transform: translate(0, -50%);
+}
+
+@keyframes concentricPulse {
+  0%, 100% {
+    width: 60px;
+    height: 60px;
+    opacity: 0.3;
+  }
+  50% {
+    width: 90px;
+    height: 90px;
+    opacity: 0.05;
+  }
+}
+
+/* Paso 2: Producción - Obturador de cámara */
+.process-card:nth-child(2)::after {
+  content: '';
+  position: absolute;
+  bottom: 2rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: shutterClose 2.5s ease-in-out infinite;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
+}
+
+@keyframes shutterClose {
+  0% {
+    clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
+  }
+  25% {
+    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+  }
+  50% {
+    clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+  }
+  75% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
+  }
+}
+
+/* Paso 3: Edición - Línea de tiempo deslizante */
+.process-card:nth-child(3)::after {
+  content: '';
+  position: absolute;
+  bottom: 2.5rem;
+  right: 1rem;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.3;
+  animation: timelineSlide 3s ease-in-out infinite;
+}
+
+@keyframes timelineSlide {
+  0% {
+    transform: translateX(-30px);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(-30px);
+  }
+}
+
+/* Paso 4: Publicación - Ondas de transmisión */
+.process-card:nth-child(4)::after {
+  content: '';
+  position: absolute;
+  bottom: 2rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: transmitWave 2.5s ease-in-out infinite;
+}
+
+@keyframes transmitWave {
+  0% {
+    width: 50px;
+    height: 50px;
+    opacity: 0.4;
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+  }
+}
