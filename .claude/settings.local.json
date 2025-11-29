@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nAgregar efectos de glow lights animados en la sección de Proyectos Destacados\n\n- Añadir 5 luces con gradientes radiales pulsantes (glow effect)\n- Implementar 4 tipos de animaciones de pulsación (glowPulse1-4) con timings diferentes\n- Agregar 4 partículas de glow flotantes con animaciones de brillo\n- Crear animaciones de movimiento suave para cada luz (floatLight1-5)\n- Utilizar colores naranja/rojo de la página (#FF6B4A) con transparencias\n- Optimizar rendimiento con will-change y filter drop-shadow\n- Mantener pointer-events-none para no interferir con elementos interactivos\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nAgregar efectos de glow lights animados en la sección de Proyectos Destacados\n\n- Añadir 5 luces con gradientes radiales pulsantes (glow effect)\n- Implementar 4 tipos de animaciones de pulsación (glowPulse1-4) con timings diferentes\n- Agregar 4 partículas de glow flotantes con animaciones de brillo\n- Crear animaciones de movimiento suave para cada luz (floatLight1-5)\n- Utilizar colores naranja/rojo de la página (#FF6B4A) con transparencias\n- Optimizar rendimiento con will-change y filter drop-shadow\n- Mantener pointer-events-none para no interferir con elementos interactivos\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

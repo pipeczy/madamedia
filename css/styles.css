@@ -1113,15 +1113,15 @@ h1, h2, h3, h4, h5, h6 {
   will-change: transform;
 }
 
-/* Glow pulse para el fondo del logo */
+/* Glow pulse para el fondo del logo - Muy sutil */
 @keyframes floatGlowPulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.2;
     transform: scale(1);
   }
   50% {
-    opacity: 0.6;
-    transform: scale(1.1);
+    opacity: 0.35;
+    transform: scale(1.05);
   }
 }
 
