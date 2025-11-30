@@ -1069,7 +1069,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ============================
-   Videos del grid (Shorts)
+   Videos del grid (YouTube Shorts)
    ============================ */
 .video-card-embed {
   position: absolute;
@@ -1081,10 +1081,11 @@ h1, h2, h3, h4, h5, h6 {
    para recortar las bandas negras laterales   */
 .video-card-embed iframe {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
-  width: 180%;   /* prueba 170–200% según veas */
-  height: 100%;
-  transform: translateX(-50%);
+  width: 140%;   /* Ajustado para balance entre cobertura y contenido */
+  height: 140%;  /* Ajustado para balance entre cobertura y contenido */
+  transform: translate(-50%, -50%);
   border: 0;
+  object-fit: cover;
 }
