@@ -103,3 +103,53 @@ if (statsGrid) {
 // autoplay=1, loop=1, muted=1, background=1
 // No se requiere JavaScript adicional para controlar la reproducción
 
+// ============================================================================
+// VIDEO CAROUSEL - Carrusel automático de videos en "Sobre Nosotros"
+// ============================================================================
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.video-carousel-item');
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+  // Mantener el índice dentro del rango válido
+  if (index >= totalSlides) currentSlide = 0;
+  if (index < 0) currentSlide = totalSlides - 1;
+
+  // Actualizar visibilidad de los videos
+  slides.forEach((slide, i) => {
+    slide.style.opacity = i === currentSlide ? '1' : '0';
+  });
+
+  // Actualizar indicadores de puntos
+  dots.forEach((dot, i) => {
+    if (i === currentSlide) {
+      dot.style.width = '24px';
+      dot.style.backgroundColor = 'white';
+    } else {
+      dot.style.width = '8px';
+      dot.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+    }
+  });
+}
+
+function changeCarouselSlide(direction) {
+  currentSlide += direction;
+  showSlide(currentSlide);
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  showSlide(currentSlide);
+}
+
+// Auto-play del carrusel cada 8 segundos
+setInterval(() => {
+  changeCarouselSlide(1);
+}, 8000);
+
+// Inicializar el carrusel
+if (slides.length > 0) {
+  showSlide(0);
+}

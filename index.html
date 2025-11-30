@@ -621,10 +621,231 @@
 -->
 
   <!-- ==========================================================================
+       SOBRE NOSOTROS
+       ========================================================================== -->
+  <section id="nosotros" class="relative py-24 lg:py-32 overflow-hidden">
+    <!-- Glow lights decorativos - Derecha -->
+    <div class="absolute top-1/2 right-0 -translate-y-1/2 w-full pointer-events-none glow-light-1">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-1"
+        style="width: 500px; height: 500px; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.25) 0%, rgba(255, 107, 74, 0.12) 40%, transparent 70%);">
+      </div>
+      <div class="absolute inset-0 rounded-full blur-2xl animate-glow-pulse-2"
+        style="width: 500px; height: 500px; animation-delay: 0.5s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.15) 0%, rgba(255, 107, 74, 0.05) 45%, transparent 75%);">
+      </div>
+    </div>
+
+    <div class="absolute top-1/4 right-1/2 translate-x-32 w-full pointer-events-none glow-light-2">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-3"
+        style="width: 450px; height: 450px; animation-delay: 0.7s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.22) 0%, rgba(255, 107, 74, 0.1) 40%, transparent 75%);">
+      </div>
+      <div class="absolute inset-0 rounded-full blur-2xl animate-glow-pulse-4"
+        style="width: 450px; height: 450px; animation-delay: 0.2s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.12) 0%, transparent 65%);">
+      </div>
+    </div>
+
+    <div class="absolute bottom-1/3 right-1/4 w-full pointer-events-none glow-light-3">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-2"
+        style="width: 380px; height: 380px; animation-delay: 1s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.2) 0%, rgba(255, 107, 74, 0.08) 40%, transparent 70%);">
+      </div>
+      <div class="absolute inset-0 rounded-full blur-2xl animate-glow-pulse-1"
+        style="width: 380px; height: 380px; animation-delay: 0.3s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.1) 0%, transparent 60%);">
+      </div>
+    </div>
+
+    <!-- Partículas flotantes de glow - Derecha -->
+    <div class="absolute top-20 right-32 w-20 h-20 rounded-full pointer-events-none"
+      style="background: radial-gradient(circle, rgba(255, 107, 74, 0.3) 0%, transparent 70%); filter: blur(20px); animation: floatLight1 15s ease-in-out infinite; will-change: transform;">
+    </div>
+
+    <div class="absolute bottom-32 right-1/4 w-28 h-28 rounded-full pointer-events-none"
+      style="background: radial-gradient(circle, rgba(255, 107, 74, 0.25) 0%, transparent 70%); filter: blur(25px); animation: floatLight3 18s ease-in-out infinite; animation-delay: 0.5s; will-change: transform;">
+    </div>
+
+    <div class="absolute top-1/2 right-1/3 w-24 h-24 rounded-full pointer-events-none"
+      style="background: radial-gradient(circle, rgba(255, 107, 74, 0.2) 0%, transparent 70%); filter: blur(18px); animation: floatLight2 20s ease-in-out infinite; animation-delay: 1s; will-change: transform;">
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Video Carousel -->
+        <div class="relative">
+          <div class="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-neutral-900 relative group">
+            <!-- Contenedor de videos -->
+            <div class="relative w-full h-full">
+              <!-- Video 1 -->
+              <div class="video-carousel-item absolute inset-0 opacity-100 transition-opacity duration-500"
+                style="opacity: 1;">
+                <iframe
+                  src="https://www.youtube.com/embed/SNk9XGD3AVk?controls=0&autoplay=1&mute=1&loop=1&playlist=SNk9XGD3AVk&modestbranding=1&rel=0&playsinline=1"
+                  frameborder="0" allow="autoplay; fullscreen" class="w-full h-full"
+                  style="border:0;"></iframe>
+              </div>
+
+              <!-- Video 2 -->
+              <div class="video-carousel-item absolute inset-0 opacity-0 transition-opacity duration-500"
+                style="opacity: 0;">
+                <iframe
+                  src="https://www.youtube.com/embed/i2nEL6nnuTs?controls=0&autoplay=1&mute=1&loop=1&playlist=i2nEL6nnuTs&modestbranding=1&rel=0&playsinline=1"
+                  frameborder="0" allow="autoplay; fullscreen" class="w-full h-full"
+                  style="border:0;"></iframe>
+              </div>
+
+              <!-- Video 3 -->
+              <div class="video-carousel-item absolute inset-0 opacity-0 transition-opacity duration-500"
+                style="opacity: 0;">
+                <iframe
+                  src="https://www.youtube.com/embed/jugodTDkIas?controls=0&autoplay=1&mute=1&loop=1&playlist=jugodTDkIas&modestbranding=1&rel=0&playsinline=1"
+                  frameborder="0" allow="autoplay; fullscreen" class="w-full h-full"
+                  style="border:0;"></iframe>
+              </div>
+
+              <!-- Gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+            </div>
+
+            <!-- Botones de navegación -->
+            <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/20 hover:bg-accent text-white transition-all opacity-0 group-hover:opacity-100"
+              onclick="changeCarouselSlide(-1)">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/20 hover:bg-accent text-white transition-all opacity-0 group-hover:opacity-100"
+              onclick="changeCarouselSlide(1)">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <!-- Indicadores de puntos -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+              <button class="carousel-dot w-2 h-2 rounded-full bg-white transition-all cursor-pointer"
+                style="width: 24px;"
+                onclick="goToSlide(0)"></button>
+              <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all cursor-pointer"
+                onclick="goToSlide(1)"></button>
+              <button class="carousel-dot w-2 h-2 rounded-full bg-white/50 transition-all cursor-pointer"
+                onclick="goToSlide(2)"></button>
+            </div>
+          </div>
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 border-2 border-accent/30 rounded-2xl"></div>
+        </div>
+
+        <!-- Text -->
+        <div>
+          <span class="text-accent font-medium text-sm tracking-widest uppercase">
+            Sobre Nosotros
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6 font-display">
+            Creatividad que
+            <span class="text-gradient">genera resultados</span>
+          </h2>
+          <div class="space-y-4 text-neutral-400">
+            <p>
+              MadaMedia es una agencia creativa especializada en contenido digital para
+              PYMES y medianas empresas. Nuestro objetivo es simple: hacer que tu marca
+              destaque en un mundo saturado de contenido.
+            </p>
+            <p>
+              Contamos con un equipo profesional de diseñadores gráficos, editores de video,
+              expertos audiovisuales, especialistas en marketing digital y creativos que
+              trabajan juntos para crear contenido que sigue tendencias y se traduce en ventas.
+            </p>
+            <p>
+              No solo creamos contenido bonito; creamos contenido que conecta, que cuenta
+              historias y que impulsa el crecimiento de tu negocio.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mt-8">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300">Editores de Video</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300">Diseñadores Gráficos</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300">Marketing Digital</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <span class="text-sm text-neutral-300">Community Managers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
        PLANES - Basado en PDF MadaMedia
        ========================================================================== -->
-  <section id="planes" class="relative py-24 lg:py-32 bg-neutral-900/30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="planes" class="relative py-24 lg:py-32 bg-neutral-900/30 overflow-hidden">
+    <!-- Glow lights decorativos - Derecha -->
+    <div class="absolute top-1/2 right-0 -translate-y-1/2 w-full pointer-events-none glow-light-1">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-1"
+        style="width: 500px; height: 500px; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.25) 0%, rgba(255, 107, 74, 0.12) 40%, transparent 70%);">
+      </div>
+      <div class="absolute inset-0 rounded-full blur-2xl animate-glow-pulse-2"
+        style="width: 500px; height: 500px; animation-delay: 0.5s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.15) 0%, rgba(255, 107, 74, 0.05) 45%, transparent 75%);">
+      </div>
+    </div>
+
+    <div class="absolute top-1/4 right-1/2 translate-x-32 w-full pointer-events-none glow-light-2">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-3"
+        style="width: 450px; height: 450px; animation-delay: 0.7s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.22) 0%, rgba(255, 107, 74, 0.1) 40%, transparent 75%);">
+      </div>
+      <div class="absolute inset-0 rounded-full blur-2xl animate-glow-pulse-4"
+        style="width: 450px; height: 450px; animation-delay: 0.2s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.12) 0%, transparent 65%);">
+      </div>
+    </div>
+
+    <div class="absolute bottom-1/3 right-1/4 w-full pointer-events-none glow-light-3">
+      <div class="absolute inset-0 rounded-full blur-3xl animate-glow-pulse-2"
+        style="width: 380px; height: 380px; animation-delay: 1s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.2) 0%, rgba(255, 107, 74, 0.08) 40%, transparent 70%);">
+      </div>
+      <div class="absolute inset-0 rounded-full blur-2xl animate-glow-pulse-1"
+        style="width: 380px; height: 380px; animation-delay: 0.3s; background: radial-gradient(circle at center, rgba(255, 107, 74, 0.1) 0%, transparent 60%);">
+      </div>
+    </div>
+
+    <!-- Partículas flotantes de glow - Derecha -->
+    <div class="absolute top-20 right-32 w-20 h-20 rounded-full pointer-events-none"
+      style="background: radial-gradient(circle, rgba(255, 107, 74, 0.3) 0%, transparent 70%); filter: blur(20px); animation: floatLight1 15s ease-in-out infinite; will-change: transform;">
+    </div>
+
+    <div class="absolute bottom-32 right-1/4 w-28 h-28 rounded-full pointer-events-none"
+      style="background: radial-gradient(circle, rgba(255, 107, 74, 0.25) 0%, transparent 70%); filter: blur(25px); animation: floatLight3 18s ease-in-out infinite; animation-delay: 0.5s; will-change: transform;">
+    </div>
+
+    <div class="absolute top-1/3 right-1/3 w-24 h-24 rounded-full pointer-events-none"
+      style="background: radial-gradient(circle, rgba(255, 107, 74, 0.2) 0%, transparent 70%); filter: blur(18px); animation: floatLight2 20s ease-in-out infinite; animation-delay: 1s; will-change: transform;">
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <span class="text-accent font-medium text-sm tracking-widest uppercase">
           Planes y Servicios
@@ -912,87 +1133,6 @@
     </div>
   </section>
 
-  <!-- ==========================================================================
-       SOBRE NOSOTROS
-       ========================================================================== -->
-  <section id="nosotros" class="relative py-24 lg:py-32 overflow-hidden">
-    <div class="parallax-slow absolute top-20 right-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <!-- Visual -->
-        <div class="relative">
-          <div class="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-neutral-900"></div>
-          <div class="absolute -bottom-6 -right-6 w-32 h-32 border-2 border-accent/30 rounded-2xl"></div>
-        </div>
-
-        <!-- Text -->
-        <div>
-          <span class="text-accent font-medium text-sm tracking-widest uppercase">
-            Sobre Nosotros
-          </span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6 font-display">
-            Creatividad que
-            <span class="text-gradient">genera resultados</span>
-          </h2>
-          <div class="space-y-4 text-neutral-400">
-            <p>
-              MadaMedia es una agencia creativa especializada en contenido digital para
-              PYMES y medianas empresas. Nuestro objetivo es simple: hacer que tu marca
-              destaque en un mundo saturado de contenido.
-            </p>
-            <p>
-              Contamos con un equipo profesional de diseñadores gráficos, editores de video,
-              expertos audiovisuales, especialistas en marketing digital y creativos que
-              trabajan juntos para crear contenido que sigue tendencias y se traduce en ventas.
-            </p>
-            <p>
-              No solo creamos contenido bonito; creamos contenido que conecta, que cuenta
-              historias y que impulsa el crecimiento de tu negocio.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4 mt-8">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <span class="text-sm text-neutral-300">Editores de Video</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                </svg>
-              </div>
-              <span class="text-sm text-neutral-300">Diseñadores Gráficos</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
-              <span class="text-sm text-neutral-300">Marketing Digital</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-              <span class="text-sm text-neutral-300">Community Managers</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ==========================================================================
        PROCESO
