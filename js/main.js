@@ -414,3 +414,35 @@ document.addEventListener('keydown', function(e) {
     closeVideoModal();
   }
 });
+
+
+// Manejar clicks en botones de planes
+document.addEventListener('DOMContentLoaded', function() {
+  const planButtons = document.querySelectorAll('.plan-button');
+  const selectElement = document.querySelector('select[class*="bg-neutral-800"]');
+  
+  planButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const plan = this.getAttribute('data-plan');
+      
+      // Esperar un poco para que el scroll se complete
+      setTimeout(() => {
+        if (selectElement && plan) {
+          selectElement.value = plan;
+          selectElement.style.color = 'white';
+        }
+      }, 500);
+    });
+  });
+  
+  // Cambiar color del select cuando el usuario selecciona una opción
+  if (selectElement) {
+    selectElement.addEventListener('change', function() {
+      if (this.value !== '') {
+        this.style.color = 'white';
+      } else {
+        this.style.color = '';
+      }
+    });
+  }
+});
