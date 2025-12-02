@@ -1,4 +1,54 @@
-// Mobile menu toggle
+// ============================================================================
+// MOUSE PARALLAX EFFECT - Efecto interactivo con el mouse
+// ============================================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const parallaxSections = document.querySelectorAll('.mouse-parallax-section');
+  
+  parallaxSections.forEach(section => {
+    section.addEventListener('mousemove', function(e) {
+      const rect = section.getBoundingClientRect();
+      const x = e.clientX - rect.left; // Posición X del mouse relativa a la sección
+      const y = e.clientY - rect.top;  // Posición Y del mouse relativa a la sección
+      
+      // Calcular el porcentaje de movimiento (-50 a 50)
+      const xPercent = ((x / rect.width) - 0.5) * 100;
+      const yPercent = ((y / rect.height) - 0.5) * 100;
+      
+      // Aplicar el movimiento a cada capa con diferentes intensidades
+      const layer1Elements = section.querySelectorAll('.parallax-layer-1');
+      const layer2Elements = section.querySelectorAll('.parallax-layer-2');
+      const layer3Elements = section.querySelectorAll('.parallax-layer-3');
+      
+      layer1Elements.forEach(el => {
+        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
+        el.style.transform = `translate(${xPercent * 0.15}px, ${yPercent * 0.15}px) ${rotation}`;
+      });
+      
+      layer2Elements.forEach(el => {
+        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
+        el.style.transform = `translate(${xPercent * 0.25}px, ${yPercent * 0.25}px) ${rotation}`;
+      });
+      
+      layer3Elements.forEach(el => {
+        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
+        el.style.transform = `translate(${xPercent * 0.35}px, ${yPercent * 0.35}px) ${rotation}`;
+      });
+    });
+    
+    // Resetear al salir de la sección
+    section.addEventListener('mouseleave', function() {
+      const allLayers = section.querySelectorAll('.parallax-layer-1, .parallax-layer-2, .parallax-layer-3');
+      allLayers.forEach(el => {
+        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
+        el.style.transform = `translate(0, 0) ${rotation}`;
+      });
+    });
+  });
+});
+
+// ============================================================================
+// MOBILE MENU TOGGLE
+// ============================================================================
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 

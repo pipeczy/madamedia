@@ -7,10 +7,93 @@
 body {
   font-family: 'DM Sans', sans-serif;
   scroll-behavior: smooth;
+  background-color: #0a0a0a;
+  background-image: 
+    /* Patrón de puntos sutil */
+    radial-gradient(circle at 1px 1px, rgba(255, 107, 74, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Sora', sans-serif;
+}
+
+/* ==========================================================================
+   DECORATIVE BACKGROUND ELEMENTS - Minimalista
+   ========================================================================== */
+/* Líneas decorativas verticales sutiles */
+.decorative-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.4;
+}
+
+.decorative-lines::before,
+.decorative-lines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(255, 107, 74, 0.1) 20%, 
+    rgba(255, 107, 74, 0.15) 50%, 
+    rgba(255, 107, 74, 0.1) 80%, 
+    transparent 100%);
+}
+
+.decorative-lines::before {
+  left: 15%;
+}
+
+.decorative-lines::after {
+  right: 15%;
+}
+
+/* Formas geométricas flotantes */
+.geometric-shape {
+  position: absolute;
+  border: 1px solid rgba(255, 107, 74, 0.08);
+  pointer-events: none;
+  animation: floatShape 20s ease-in-out infinite;
+}
+
+.geometric-shape.circle {
+  border-radius: 50%;
+}
+
+.geometric-shape.square {
+  border-radius: 8px;
+}
+
+@keyframes floatShape {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+}
+
+/* Grid background sutil */
+.grid-background {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 107, 74, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 107, 74, 0.02) 1px, transparent 1px);
+  background-size: 100px 100px;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 /* ==========================================================================
@@ -29,18 +112,29 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   @keyframes parallaxSlow {
-    from { transform: translateY(0); }
-    to { transform: translateY(-100px); }
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-100px);
+    }
   }
 
   @keyframes parallaxFast {
-    from { transform: translateY(0); }
-    to { transform: translateY(-200px); }
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-200px);
+    }
   }
 }
 
 /* Respeta prefers-reduced-motion para accesibilidad */
 @media (prefers-reduced-motion: reduce) {
+
   .parallax-slow,
   .parallax-fast,
   .animate-fade-in,
@@ -70,8 +164,13 @@ h1, h2, h3, h4, h5, h6 {
    ANIMACIONES HERO
    ========================================================================== */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
@@ -79,6 +178,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -86,13 +186,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 74, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(255, 107, 74, 0.6); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 107, 74, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(255, 107, 74, 0.6);
+  }
 }
 
 .animate-fade-in {
@@ -103,9 +217,20 @@ h1, h2, h3, h4, h5, h6 {
   animation: slideUp 0.8s ease-out forwards;
 }
 
-.animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
-.animation-delay-400 { animation-delay: 0.4s; opacity: 0; }
-.animation-delay-600 { animation-delay: 0.6s; opacity: 0; }
+.animation-delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+  opacity: 0;
+}
 
 .floating {
   animation: float 6s ease-in-out infinite;
@@ -155,12 +280,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Shimmer effect - brillo que se mueve */
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 107, 74, 0.1) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 107, 74, 0.1) 50%,
+      transparent 100%);
   transform: translateX(-100%);
 }
 
@@ -172,9 +295,43 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(200%);
   }
+}
+
+/* Clase para usar shimmer en separadores */
+.animate-shimmer {
+  animation: shimmerMove 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   MOUSE PARALLAX EFFECT - Efecto interactivo con el mouse
+   ========================================================================== */
+.mouse-parallax-section {
+  cursor: default;
+}
+
+.parallax-shape,
+.parallax-layer-1,
+.parallax-layer-2,
+.parallax-layer-3 {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Suavizar el movimiento de las capas */
+.parallax-layer-1 {
+  transition: transform 0.4s ease-out;
+}
+
+.parallax-layer-2 {
+  transition: transform 0.35s ease-out;
+}
+
+.parallax-layer-3 {
+  transition: transform 0.3s ease-out;
 }
 
 /* Sparkles - destellos decorativos */
@@ -207,10 +364,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes sparkleAnimation {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0);
   }
+
   50% {
     opacity: 1;
     transform: scale(1);
@@ -267,18 +427,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes particleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.1;
   }
+
   25% {
     transform: translate(10px, -15px) scale(1.1);
     opacity: 0.2;
   }
+
   50% {
     transform: translate(-5px, -25px) scale(0.9);
     opacity: 0.15;
   }
+
   75% {
     transform: translate(15px, -10px) scale(1.05);
     opacity: 0.25;
@@ -291,10 +456,12 @@ h1, h2, h3, h4, h5, h6 {
     transform: rotate(6deg) scale(1);
     opacity: 0.3;
   }
+
   50% {
     transform: rotate(8deg) scale(1.02);
     opacity: 0.5;
   }
+
   100% {
     transform: rotate(6deg) scale(1);
     opacity: 0.3;
@@ -306,10 +473,12 @@ h1, h2, h3, h4, h5, h6 {
     transform: rotate(-6deg) scale(1);
     opacity: 0.2;
   }
+
   50% {
     transform: rotate(-8deg) scale(1.02);
     opacity: 0.4;
   }
+
   100% {
     transform: rotate(-6deg) scale(1);
     opacity: 0.2;
@@ -326,10 +495,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Pulse slow para el glow background */
 @keyframes pulseSlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.5;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
@@ -345,7 +517,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 .card-hover {
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .card-hover:hover {
@@ -367,12 +539,10 @@ h1, h2, h3, h4, h5, h6 {
    VIDEO OVERLAY
    ========================================================================== */
 .video-overlay {
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 10, 10, 0.4) 0%,
-    rgba(10, 10, 10, 0.6) 50%,
-    rgba(10, 10, 10, 0.95) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(10, 10, 10, 0.4) 0%,
+      rgba(10, 10, 10, 0.6) 50%,
+      rgba(10, 10, 10, 0.95) 100%);
 }
 
 /* ==========================================================================
@@ -476,9 +646,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Animación sutil de pulso en hover */
 @keyframes navPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     transform: translate(-50%, -50%) scale(1.05);
   }
@@ -514,10 +687,9 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
   height: 32px;
   background: linear-gradient(90deg,
-    rgba(255, 107, 74, 0.2),
-    rgba(255, 107, 74, 0.3),
-    rgba(255, 107, 74, 0.2)
-  );
+      rgba(255, 107, 74, 0.2),
+      rgba(255, 107, 74, 0.3),
+      rgba(255, 107, 74, 0.2));
   border: 2px solid rgba(255, 107, 74, 0.4);
   border-radius: 0 0 0.75rem 0.75rem;
   display: flex;
@@ -532,11 +704,10 @@ h1, h2, h3, h4, h5, h6 {
   width: 5px;
   height: 22px;
   background: linear-gradient(90deg,
-    white 0%,
-    white 50%,
-    black 50%,
-    black 100%
-  );
+      white 0%,
+      white 50%,
+      black 50%,
+      black 100%);
 }
 
 /* Parte móvil (se abre y cierra) */
@@ -546,13 +717,11 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   height: 48px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--color-accent),
-    var(--color-accent) 10px,
-    rgba(10, 10, 10, 0.6) 10px,
-    rgba(10, 10, 10, 0.6) 20px
-  );
+  background: repeating-linear-gradient(45deg,
+      var(--color-accent),
+      var(--color-accent) 10px,
+      rgba(10, 10, 10, 0.6) 10px,
+      rgba(10, 10, 10, 0.6) 20px);
   border: 2px solid var(--color-accent);
   border-radius: 0.75rem 0.75rem 0 0;
   transform-origin: bottom center;
@@ -565,18 +734,22 @@ h1, h2, h3, h4, h5, h6 {
     transform: rotateX(0deg);
     opacity: 1;
   }
+
   20% {
     transform: rotateX(0deg);
     opacity: 1;
   }
+
   50% {
     transform: rotateX(-140deg);
     opacity: 0.9;
   }
+
   70% {
     transform: rotateX(-140deg);
     opacity: 0.9;
   }
+
   100% {
     transform: rotateX(0deg);
     opacity: 1;
@@ -615,9 +788,11 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     box-shadow: inset 0 0 20px rgba(255, 107, 74, 0);
   }
+
   50% {
     box-shadow: inset 0 0 30px rgba(255, 107, 74, 0.15);
   }
+
   100% {
     box-shadow: inset 0 0 20px rgba(255, 107, 74, 0);
   }
@@ -643,13 +818,11 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   height: 6px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--color-accent) 0px,
-    var(--color-accent) 3px,
-    transparent 3px,
-    transparent 12px
-  );
+  background: repeating-linear-gradient(90deg,
+      var(--color-accent) 0px,
+      var(--color-accent) 3px,
+      transparent 3px,
+      transparent 12px);
   opacity: 0.08;
   border-radius: 0 0 0.5rem 0.5rem;
 }
@@ -679,11 +852,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes concentricPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     width: 60px;
     height: 60px;
     opacity: 0.3;
   }
+
   50% {
     width: 90px;
     height: 90px;
@@ -710,15 +886,19 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
   }
+
   25% {
     clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
   }
+
   50% {
     clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
   }
+
   75% {
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
+
   100% {
     clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
   }
@@ -741,9 +921,11 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     transform: translateX(-30px);
   }
+
   50% {
     transform: translateX(30px);
   }
+
   100% {
     transform: translateX(-30px);
   }
@@ -769,6 +951,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 50px;
     opacity: 0.4;
   }
+
   100% {
     width: 80px;
     height: 80px;
@@ -789,11 +972,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Animaciones de pulsación del glow - 4 variaciones con timings diferentes */
 @keyframes glowPulse1 {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     filter: blur(60px);
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     filter: blur(40px);
@@ -802,11 +988,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes glowPulse2 {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
     filter: blur(50px);
     transform: scale(0.95);
   }
+
   50% {
     opacity: 0.7;
     filter: blur(30px);
@@ -815,11 +1004,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes glowPulse3 {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.35;
     filter: blur(55px);
     transform: scale(1.05);
   }
+
   50% {
     opacity: 0.75;
     filter: blur(35px);
@@ -828,11 +1020,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes glowPulse4 {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.25;
     filter: blur(45px);
     transform: scale(0.9);
   }
+
   50% {
     opacity: 0.65;
     filter: blur(25px);
@@ -892,75 +1087,100 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Movimiento suave de las luces */
 @keyframes floatLight1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0) translateY(0);
   }
+
   25% {
     transform: translateX(30px) translateY(-20px);
   }
+
   50% {
     transform: translateX(-20px) translateY(20px);
   }
+
   75% {
     transform: translateX(40px) translateY(10px);
   }
 }
 
 @keyframes floatLight2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0) translateY(0);
   }
+
   25% {
     transform: translateX(-40px) translateY(15px);
   }
+
   50% {
     transform: translateX(30px) translateY(-25px);
   }
+
   75% {
     transform: translateX(-15px) translateY(-10px);
   }
 }
 
 @keyframes floatLight3 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0) translateY(0);
   }
+
   25% {
     transform: translateX(20px) translateY(30px);
   }
+
   50% {
     transform: translateX(-35px) translateY(-15px);
   }
+
   75% {
     transform: translateX(25px) translateY(-20px);
   }
 }
 
 @keyframes floatLight4 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0) translateY(0);
   }
+
   25% {
     transform: translateX(-30px) translateY(-25px);
   }
+
   50% {
     transform: translateX(35px) translateY(20px);
   }
+
   75% {
     transform: translateX(-10px) translateY(15px);
   }
 }
 
 @keyframes floatLight5 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0) translateY(0);
   }
+
   25% {
     transform: translateX(35px) translateY(20px);
   }
+
   50% {
     transform: translateX(-25px) translateY(-30px);
   }
+
   75% {
     transform: translateX(20px) translateY(-10px);
   }
@@ -973,15 +1193,20 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Animación de flotación suave del logo */
 @keyframes floatLogo {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotateZ(0deg) scale(1);
   }
+
   25% {
     transform: translateY(-15px) rotateZ(1deg) scale(1.02);
   }
+
   50% {
     transform: translateY(-30px) rotateZ(0deg) scale(1);
   }
+
   75% {
     transform: translateY(-10px) rotateZ(-1deg) scale(1.01);
   }
@@ -994,10 +1219,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glow pulse para el fondo del logo - Muy sutil */
 @keyframes floatGlowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.2;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.35;
     transform: scale(1.05);
@@ -1010,15 +1238,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Gradiente diagonal que va de transparente a oscuro */
 .bg-gradient-diagonal {
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    transparent 20%,
-    rgba(0, 0, 0, 0.3) 40%,
-    rgba(0, 0, 0, 0.6) 60%,
-    rgba(0, 0, 0, 0.85) 80%,
-    rgba(0, 0, 0, 0.95) 100%
-  );
+  background: linear-gradient(135deg,
+      transparent 0%,
+      transparent 20%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.6) 60%,
+      rgba(0, 0, 0, 0.85) 80%,
+      rgba(0, 0, 0, 0.95) 100%);
   pointer-events: none;
 }
 
@@ -1041,9 +1267,11 @@ h1, h2, h3, h4, h5, h6 {
 */
 .video-card-embed {
   opacity: 0;
-  filter: blur(0px);   /* si quieres blur, aumentamos aquí */
+  filter: blur(0px);
+  /* si quieres blur, aumentamos aquí */
   animation: videoCardFadeIn 0.7s ease forwards;
-  animation-delay: 0.55s; /* Ajusta si ves YouTube cargando lento */
+  animation-delay: 0.55s;
+  /* Ajusta si ves YouTube cargando lento */
 }
 
 @keyframes videoCardFadeIn {
@@ -1054,12 +1282,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Opcional: para dejar los videos más tenues */
 .video-card-embed iframe {
-  opacity: 0.75; /* ajustable: 0.5 más tenue, 1.0 brillante */
+  opacity: 0.75;
+  /* ajustable: 0.5 más tenue, 1.0 brillante */
   transition: opacity 0.3s ease;
 }
 
 .portfolio-card:hover .video-card-embed iframe {
-  opacity: 1; /* al pasar el mouse se ve más brillante */
+  opacity: 1;
+  /* al pasar el mouse se ve más brillante */
 }
 
 /* Para que el iframe cubra siempre el card */
@@ -1083,8 +1313,10 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140%;   /* Ajustado para balance entre cobertura y contenido */
-  height: 140%;  /* Ajustado para balance entre cobertura y contenido */
+  width: 140%;
+  /* Ajustado para balance entre cobertura y contenido */
+  height: 140%;
+  /* Ajustado para balance entre cobertura y contenido */
   transform: translate(-50%, -50%);
   border: 0;
   object-fit: cover;
