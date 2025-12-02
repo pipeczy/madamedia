@@ -847,8 +847,8 @@
             </li>
           </ul>
 
-          <a href="#contacto"
-            class="block w-full py-3 border border-neutral-700 hover:border-accent text-white rounded-full text-sm font-medium transition-all text-center">
+          <a href="#contacto" data-plan="esencial"
+            class="plan-select-btn block w-full py-3 border border-neutral-700 hover:border-accent text-white rounded-full text-sm font-medium transition-all text-center">
             Elegir Plan
           </a>
         </div>
@@ -925,8 +925,8 @@
             </li>
           </ul>
 
-          <a href="#contacto"
-            class="block w-full py-3 bg-accent hover:bg-accent-dark text-white rounded-full text-sm font-medium transition-all text-center">
+          <a href="#contacto" data-plan="completa"
+            class="plan-select-btn block w-full py-3 bg-accent hover:bg-accent-dark text-white rounded-full text-sm font-medium transition-all text-center">
             Elegir Plan
           </a>
         </div>
@@ -997,8 +997,8 @@
             </li>
           </ul>
 
-          <a href="#contacto"
-            class="block w-full py-3 border border-neutral-700 hover:border-accent text-white rounded-full text-sm font-medium transition-all text-center">
+          <a href="#contacto" data-plan="full"
+            class="plan-select-btn block w-full py-3 border border-neutral-700 hover:border-accent text-white rounded-full text-sm font-medium transition-all text-center">
             Elegir Plan
           </a>
         </div>
@@ -1047,9 +1047,9 @@
             </li>
           </ul>
 
-          <a href="#contacto"
-            class="block w-full py-3 border border-neutral-700 hover:border-accent text-white rounded-full text-sm font-medium transition-all text-center mt-auto">
-            Solicitar Cotizaci√≥n
+          <a href="#contacto" data-plan="carta"
+            class="plan-select-btn block w-full py-3 border border-neutral-700 hover:border-accent text-white rounded-full text-sm font-medium transition-all text-center mt-auto">
+            Solicitar Cotización
           </a>
         </div>
       </div>
@@ -1378,13 +1378,13 @@
           </div>
           <input type="text" placeholder="Empresa / Marca"
             class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:border-accent transition-colors">
-          <select
-            class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-500 focus:outline-none focus:border-accent transition-colors">
+          <select id="planSelect"
+            class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-accent transition-colors">
             <option value="">Selecciona un plan</option>
             <option value="esencial">RRSS Esencial - $400.000</option>
             <option value="completa">RRSS Completa - $600.000</option>
             <option value="full">RRSS Full - $800.000</option>
-            <option value="carta">A la Carta - Cotizaci√≥n</option>
+            <option value="carta">A la Carta - Cotización</option>
           </select>
           <textarea placeholder="Cu√©ntanos sobre tu proyecto..." rows="4"
             class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:border-accent transition-colors resize-none"></textarea>
@@ -1506,6 +1506,53 @@
   </div>
 
   <script src="js/main.js"></script>
+  
+  <!-- Script de pre-selección de planes -->
+  <script>
+    // Pre-selección de plan desde botones al formulario
+    document.addEventListener('DOMContentLoaded', function() {
+      const planSelectButtons = document.querySelectorAll('.plan-select-btn');
+      const planSelect = document.getElementById('planSelect');
+      
+      // Agregar event listener a cada botón de plan
+      planSelectButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          const selectedPlan = this.getAttribute('data-plan');
+          
+          // Pre-seleccionar el plan en el formulario
+          if (planSelect && selectedPlan) {
+            // Esperar a que el scroll termine para seleccionar el plan
+            setTimeout(() => {
+              planSelect.value = selectedPlan;
+              
+              // Cambiar color del select para indicar que está seleccionado
+              planSelect.classList.remove('text-neutral-500');
+              planSelect.classList.add('text-white');
+              
+              // Agregar un pequeño efecto de highlight
+              planSelect.style.borderColor = '#FF6B4A';
+              setTimeout(() => {
+                planSelect.style.borderColor = '';
+              }, 1000);
+            }, 500);
+          }
+        });
+      });
+      
+      // Cambiar color cuando el usuario selecciona manualmente
+      if (planSelect) {
+        planSelect.addEventListener('change', function() {
+          if (this.value) {
+            this.classList.remove('text-neutral-500');
+            this.classList.add('text-white');
+          } else {
+            this.classList.remove('text-white');
+            this.classList.add('text-neutral-500');
+          }
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>

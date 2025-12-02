@@ -12,23 +12,31 @@ Sitio web profesional para agencia de producción audiovisual y gestión de rede
 - 💼 Sección de planes y precios
 - 📋 FAQ interactivo con colores alternados
 - 🎭 Proceso de trabajo animado
+- 🔗 Pre-selección de planes desde botones al formulario
 
 ## 📁 Estructura del Proyecto
 
 ```
 madamedia/
-├── public/              # Carpeta de deploy (Firebase)
+├── public/              # Carpeta principal del sitio web
 │   ├── css/
-│   │   └── styles.css
+│   │   └── styles.css  # Estilos del sitio
 │   ├── js/
-│   │   └── main.js
+│   │   └── main.js     # JavaScript principal
 │   ├── images/
 │   │   ├── logo.png
 │   │   └── logo.jpeg
-│   └── index.html
-├── firebase.json        # Configuración de Firebase
-├── .firebaserc         # Proyecto de Firebase
+│   └── index.html      # Página principal
+├── css/                 # Archivos de desarrollo
+│   └── styles.css
+├── js/
+│   └── main.js
+├── images/
+│   ├── logo.png
+│   └── logo.jpeg
+├── index.html           # Archivo de desarrollo
 ├── .gitignore          # Archivos ignorados
+├── CHANGELOG.md        # Historial de cambios
 └── README.md           # Este archivo
 ```
 
@@ -38,40 +46,22 @@ madamedia/
 - CSS3 (Tailwind CSS via CDN)
 - JavaScript (Vanilla)
 - YouTube iframe API
-- Firebase Hosting
 
-## 📦 Instalación
+## 📦 Uso
 
-1. Clona el repositorio
-2. Instala Firebase CLI (si no lo tienes):
-   ```bash
-   npm install -g firebase-tools
-   ```
-3. Inicia sesión en Firebase:
-   ```bash
-   firebase login
-   ```
+1. Abre la carpeta `public/` en tu servidor web
+2. O simplemente abre `public/index.html` en tu navegador
+3. Para desarrollo, edita los archivos en la raíz y cópialos a `public/`
 
-## 🚀 Deploy en Firebase
+## 🚀 Deploy
 
-1. Inicializa Firebase (si es primera vez):
-   ```bash
-   firebase init hosting
-   ```
-   - Selecciona "Use an existing project" o crea uno nuevo
-   - Public directory: `public`
-   - Configure as SPA: `Yes`
-   - Don't overwrite index.html: `Yes`
+Puedes hospedar este sitio en cualquier servidor web estático:
 
-2. Deploy:
-   ```bash
-   firebase deploy
-   ```
-
-3. Tu sitio estará disponible en:
-   ```
-   https://madamedia-proyecto.web.app
-   ```
+- **Netlify**: Arrastra la carpeta `public/`
+- **Vercel**: Conecta tu repositorio
+- **GitHub Pages**: Publica la carpeta `public/`
+- **Servidor propio**: Sube la carpeta `public/` via FTP
+- **Firebase Hosting**: Ver carpeta "madamedia - copia" para configuración
 
 ## 🎨 Paleta de Colores
 
