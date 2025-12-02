@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // MOUSE PARALLAX EFFECT - Efecto interactivo con el mouse
 // ============================================================================
 document.addEventListener('DOMContentLoaded', function() {
@@ -230,7 +230,7 @@ if (!window.YT) {
 
 // Función para abrir el modal con controles personalizados
 function openVideoModal(videoId, aspectRatio = "9:16") {
-  // Ajustar el contenedor del modal seg�n el aspect ratio
+  // Ajustar el contenedor del modal seg�n el aspect ratio
   const modalContainer = videoModal.querySelector(".relative.w-full");
   if (aspectRatio === "16:9") {
     modalContainer.className = "relative w-full max-w-5xl mx-4 aspect-video";
