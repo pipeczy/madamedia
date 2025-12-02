@@ -1,0 +1,22 @@
+# Firebase
+.firebase/
+firebase-debug.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log
+
+# Claude
+.claude/
+
+# Temporary files
+*.tmp
+*.bak
+*~
