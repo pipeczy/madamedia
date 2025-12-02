@@ -414,3 +414,40 @@ document.addEventListener('keydown', function(e) {
     closeVideoModal();
   }
 });
+
+// ============================================================================
+// PLAN SELECTION - Auto-fill form with selected plan
+// ============================================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const planButtons = document.querySelectorAll('.plan-button[data-plan]');
+  const planSelect = document.getElementById('plan-select');
+  
+  planButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const selectedPlan = this.getAttribute('data-plan');
+      
+      if (planSelect && selectedPlan) {
+        // Mapear los valores data-plan a los valores del select
+        const planMapping = {
+          'esencial': 'esencial',
+          'completa': 'completa',
+          'full': 'full',
+          'carta': 'carta'
+        };
+        
+        const planValue = planMapping[selectedPlan];
+        
+        if (planValue) {
+          // Establecer el valor del select
+          planSelect.value = planValue;
+          
+          // Añadir efecto visual de feedback
+          planSelect.classList.add('border-accent');
+          setTimeout(() => {
+            planSelect.classList.remove('border-accent');
+          }, 1000);
+        }
+      }
+    });
+  });
+});
