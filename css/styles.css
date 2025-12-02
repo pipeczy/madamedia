@@ -1307,17 +1307,248 @@ h6 {
   overflow: hidden;
 }
 
-/* Hacemos el iframe más ancho y lo centramos
-   para recortar las bandas negras laterales   */
+/* Recorte optimizado para formato vertical 9:16 (Reel/Stories)
+   Centra el encuadre en el sujeto y elimina bordes de YouTube */
 .video-card-embed iframe {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140%;
-  /* Ajustado para balance entre cobertura y contenido */
-  height: 140%;
-  /* Ajustado para balance entre cobertura y contenido */
+  /* Escalado equilibrado para el grid - REVERTIDO al original */
+  width: 160%;
+  /* Ancho para recortar los lados sin zoom excesivo */
+  height: 160%;
+  /* Altura para recortar arriba/abajo sin zoom excesivo */
   transform: translate(-50%, -50%);
   border: 0;
   object-fit: cover;
+  pointer-events: none;
+  /* Evita que se pueda hacer clic en el video del grid */
+}
+
+/* ==========================================================================
+   VIDEO MODAL - Controles personalizados
+   ========================================================================== */
+#videoModal {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Controles personalizados del video */
+.video-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(23, 23, 23, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 107, 74, 0.2);
+  border-radius: 9999px;
+  z-index: 100;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  /* Asegurar que los controles sean interactivos */
+}
+
+.video-controls:hover {
+  background: rgba(23, 23, 23, 1);
+  border-color: rgba(255, 107, 74, 0.4);
+}
+
+/* Botón de play/pausa */
+.control-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 107, 74, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #FF6B4A;
+}
+
+.control-btn:hover {
+  background: rgba(255, 107, 74, 0.2);
+  transform: scale(1.1);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Contenedor del slider de volumen */
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Icono de volumen */
+.volume-icon {
+  color: #FF6B4A;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.volume-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Slider de volumen personalizado */
+.volume-slider {
+  width: 100px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #FF6B4A;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 107, 74, 0.5);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #FF6B4A;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 107, 74, 0.5);
+}
+
+/* Track del slider */
+.volume-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, 
+    #FF6B4A 0%, 
+    #FF6B4A var(--volume-percentage, 100%), 
+    rgba(255, 255, 255, 0.2) var(--volume-percentage, 100%), 
+    rgba(255, 255, 255, 0.2) 100%);
+  border-radius: 2px;
+}
+
+.volume-slider::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.volume-slider::-moz-range-progress {
+  background: #FF6B4A;
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* Estilo para el video en el modal - Formato 9:16 encuadre natural equilibrado */
+#modalVideoContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  /* Contenedor fijo 9:16 (1080x1920) */
+}
+
+#modalVideoContainer iframe,
+#youtube-player {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  /* Zoom equilibrado: cabeza completa, cuello y torso visible */
+  width: 140% !important;
+  height: 140% !important;
+  transform: translate(-50%, -50%) !important;
+  object-fit: cover;
+  pointer-events: none !important;
+  /* Bloquear TODA interacción con YouTube */
+}
+
+/* Capa de bloqueo sobre el video para prevenir clicks */
+#modalVideoContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ajuste del modal para diferentes tamaños de pantalla */
+
+/* Desktop - Tamaño más controlado para ver bordes redondeados */
+@media (min-width: 641px) {
+  #videoModal .aspect-\[9\/16\] {
+    max-width: 480px;
+    /* Ancho fijo tipo smartphone en desktop */
+    max-height: 85vh;
+    /* Altura máxima para que no toque bordes */
+  }
+}
+
+/* Tablets - Tamaño intermedio */
+@media (min-width: 641px) and (max-width: 1024px) {
+  #videoModal .aspect-\[9\/16\] {
+    max-width: 420px;
+    max-height: 80vh;
+  }
+}
+
+/* Móviles - Pantalla completa aprovechada */
+@media (max-width: 640px) {
+  #videoModal .aspect-\[9\/16\] {
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+  
+  .video-controls {
+    bottom: 1rem;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+  
+  .volume-slider {
+    width: 60px;
+  }
 }
