@@ -1,0 +1,26 @@
+{
+  "name": "madamedia",
+  "version": "1.0.0",
+  "description": "Sitio web profesional para agencia de producción audiovisual y gestión de redes sociales",
+  "main": "public/index.html",
+  "scripts": {
+    "serve": "firebase serve",
+    "deploy": "firebase deploy",
+    "deploy:preview": "firebase hosting:channel:deploy preview",
+    "logs": "firebase hosting:sites:list"
+  },
+  "keywords": [
+    "agencia",
+    "medios",
+    "video",
+    "producción",
+    "redes sociales",
+    "marketing digital"
+  ],
+  "author": "MadaMedia",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madamedia/sitio-web.git"
+  }
+}
