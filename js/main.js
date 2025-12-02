@@ -229,7 +229,15 @@ if (!window.YT) {
 }
 
 // FunciÃ³n para abrir el modal con controles personalizados
-function openVideoModal(videoId) {
+function openVideoModal(videoId, aspectRatio = "9:16") {
+  // Ajustar el contenedor del modal según el aspect ratio
+  const modalContainer = videoModal.querySelector(".relative.w-full");
+  if (aspectRatio === "16:9") {
+    modalContainer.className = "relative w-full max-w-5xl mx-4 aspect-video";
+  } else {
+    modalContainer.className = "relative w-full max-w-xl mx-4 aspect-[9/16]";
+  }
+  
   // Crear div para el player de YouTube
   const playerDiv = document.createElement('div');
   playerDiv.id = 'youtube-player';
@@ -383,8 +391,9 @@ function closeVideoModal() {
 portfolioCards.forEach(card => {
   card.addEventListener('click', function() {
     const videoId = this.getAttribute('data-video-id');
+    const aspectRatio = this.getAttribute('data-aspect') || '9:16';
     if (videoId) {
-      openVideoModal(videoId);
+      openVideoModal(videoId, aspectRatio);
     }
   });
 });
