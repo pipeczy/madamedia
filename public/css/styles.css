@@ -7,27 +7,17 @@
 body {
   font-family: 'DM Sans', sans-serif;
   scroll-behavior: smooth;
-  background-color: #0a0a0a;
-  background-image: 
-    /* Patrón de puntos sutil */
-    radial-gradient(circle at 1px 1px, rgba(255, 107, 74, 0.025) 1px, transparent 1px);
+  background: #0a0a0a radial-gradient(circle at 1px 1px, rgba(255, 107, 74, 0.025) 1px, transparent 1px);
   background-size: 40px 40px;
-  background-position: 0 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Sora', sans-serif;
 }
 
 /* ==========================================================================
-   DECORATIVE BACKGROUND ELEMENTS - Minimalista
+   ELEMENTOS DECORATIVOS DE FONDO
    ========================================================================== */
-/* Líneas decorativas verticales sutiles */
 .decorative-lines {
   position: absolute;
   inset: 0;
@@ -43,23 +33,12 @@ h6 {
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(180deg, 
-    transparent 0%, 
-    rgba(255, 107, 74, 0.1) 20%, 
-    rgba(255, 107, 74, 0.15) 50%, 
-    rgba(255, 107, 74, 0.1) 80%, 
-    transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 107, 74, 0.1) 20%, rgba(255, 107, 74, 0.15) 50%, rgba(255, 107, 74, 0.1) 80%, transparent 100%);
 }
 
-.decorative-lines::before {
-  left: 15%;
-}
+.decorative-lines::before { left: 15%; }
+.decorative-lines::after { right: 15%; }
 
-.decorative-lines::after {
-  right: 15%;
-}
-
-/* Formas geométricas flotantes */
 .geometric-shape {
   position: absolute;
   border: 1px solid rgba(255, 107, 74, 0.08);
@@ -67,182 +46,56 @@ h6 {
   animation: floatShape 20s ease-in-out infinite;
 }
 
-.geometric-shape.circle {
-  border-radius: 50%;
-}
+.geometric-shape.circle { border-radius: 50%; }
+.geometric-shape.square { border-radius: 8px; }
 
-.geometric-shape.square {
-  border-radius: 8px;
-}
-
-@keyframes floatShape {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-30px) rotate(180deg);
-  }
-}
-
-/* Grid background sutil */
 .grid-background {
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(rgba(255, 107, 74, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 107, 74, 0.02) 1px, transparent 1px);
+  background: linear-gradient(rgba(255, 107, 74, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 107, 74, 0.02) 1px, transparent 1px);
   background-size: 100px 100px;
   pointer-events: none;
   opacity: 0.5;
 }
 
 /* ==========================================================================
-   PARALLAX - CSS Scroll-Driven Animations (2025 standard)
-   Más eficiente que JavaScript, funciona de forma nativa
+   PARALLAX Y ACCESIBILIDAD
    ========================================================================== */
 @supports (animation-timeline: scroll()) {
   .parallax-slow {
     animation: parallaxSlow linear;
     animation-timeline: scroll();
   }
-
   .parallax-fast {
     animation: parallaxFast linear;
     animation-timeline: scroll();
   }
-
-  @keyframes parallaxSlow {
-    from {
-      transform: translateY(0);
-    }
-
-    to {
-      transform: translateY(-100px);
-    }
-  }
-
-  @keyframes parallaxFast {
-    from {
-      transform: translateY(0);
-    }
-
-    to {
-      transform: translateY(-200px);
-    }
-  }
 }
 
-/* Respeta prefers-reduced-motion para accesibilidad */
 @media (prefers-reduced-motion: reduce) {
-
-  .parallax-slow,
-  .parallax-fast,
-  .animate-fade-in,
-  .animate-slide-up,
-  [class*="animation-delay"],
-  .floating,
-  .floating-delayed,
-  .stat-card-enhanced,
-  .shimmer,
-  .sparkle,
-  .particle,
-  .animate-border-rotate,
-  .animate-border-rotate-reverse,
-  .animate-pulse-slow {
+  .parallax-slow, .parallax-fast, .animate-fade-in, .animate-slide-up,
+  [class*="animation-delay"], .floating, .floating-delayed, .stat-card-enhanced,
+  .shimmer, .sparkle, .particle, .animate-border-rotate,
+  .animate-border-rotate-reverse, .animate-pulse-slow {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;
   }
-
-  .stat-card-enhanced {
-    opacity: 1 !important;
-    transform: none !important;
-  }
 }
 
 /* ==========================================================================
-   ANIMACIONES HERO
+   CLASES DE ANIMACIÓN
    ========================================================================== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(255, 107, 74, 0.3);
-  }
-
-  50% {
-    box-shadow: 0 0 40px rgba(255, 107, 74, 0.6);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.8s ease-out forwards;
-}
-
-.animation-delay-200 {
-  animation-delay: 0.2s;
-  opacity: 0;
-}
-
-.animation-delay-400 {
-  animation-delay: 0.4s;
-  opacity: 0;
-}
-
-.animation-delay-600 {
-  animation-delay: 0.6s;
-  opacity: 0;
-}
-
-.floating {
-  animation: float 6s ease-in-out infinite;
-}
-
-.floating-delayed {
-  animation: float 6s ease-in-out infinite;
-  animation-delay: 1s;
-}
+.animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.8s ease-out forwards; }
+.animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
+.animation-delay-400 { animation-delay: 0.4s; opacity: 0; }
+.animation-delay-600 { animation-delay: 0.6s; opacity: 0; }
+.floating { animation: float 6s ease-in-out infinite; }
+.floating-delayed { animation: float 6s ease-in-out infinite; animation-delay: 1s; }
 
 /* ==========================================================================
-   STAT CARDS - Efectos interactivos MEJORADOS
+   STAT CARDS Y EFECTOS
    ========================================================================== */
 .stat-card {
   position: relative;
@@ -260,81 +113,36 @@ h6 {
   transition: left 0.5s;
 }
 
-.stat-card:hover::before {
-  left: 100%;
-}
+.stat-card:hover::before { left: 100%; }
 
-/* Enhanced stat cards con animaciones increibles */
 .stat-card-enhanced {
   opacity: 0;
   transform: translateY(20px) scale(0.95);
   animation: statCardEntrance 0.8s ease-out forwards;
 }
 
-@keyframes statCardEntrance {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Shimmer effect - brillo que se mueve */
 .shimmer {
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 107, 74, 0.1) 50%,
-      transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 107, 74, 0.1) 50%, transparent 100%);
   transform: translateX(-100%);
 }
 
-.stat-card-enhanced:hover .shimmer {
-  animation: shimmerMove 1.5s ease-in-out infinite;
-}
-
-@keyframes shimmerMove {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(200%);
-  }
-}
-
-/* Clase para usar shimmer en separadores */
-.animate-shimmer {
-  animation: shimmerMove 3s ease-in-out infinite;
-}
+.stat-card-enhanced:hover .shimmer { animation: shimmerMove 1.5s ease-in-out infinite; }
+.animate-shimmer { animation: shimmerMove 3s ease-in-out infinite; }
 
 /* ==========================================================================
-   MOUSE PARALLAX EFFECT - Efecto interactivo con el mouse
+   MOUSE PARALLAX
    ========================================================================== */
-.mouse-parallax-section {
-  cursor: default;
-}
+.mouse-parallax-section { cursor: default; }
 
-.parallax-shape,
-.parallax-layer-1,
-.parallax-layer-2,
-.parallax-layer-3 {
+.parallax-shape, .parallax-layer-1, .parallax-layer-2, .parallax-layer-3 {
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
 
-/* Suavizar el movimiento de las capas */
-.parallax-layer-1 {
-  transition: transform 0.4s ease-out;
-}
+.parallax-layer-1 { transition: transform 0.4s ease-out; }
+.parallax-layer-2 { transition: transform 0.35s ease-out; }
+.parallax-layer-3 { transition: transform 0.3s ease-out; }
 
-.parallax-layer-2 {
-  transition: transform 0.35s ease-out;
-}
-
-.parallax-layer-3 {
-  transition: transform 0.3s ease-out;
-}
-
-/* Sparkles - destellos decorativos */
 .sparkle {
   position: absolute;
   width: 4px;
@@ -345,39 +153,13 @@ h6 {
   pointer-events: none;
 }
 
-.sparkle-1 {
-  top: 20%;
-  right: 20%;
-}
+.sparkle-1 { top: 20%; right: 20%; }
+.sparkle-2 { bottom: 30%; left: 15%; }
 
-.sparkle-2 {
-  bottom: 30%;
-  left: 15%;
-}
+.stat-card-enhanced:hover .sparkle { animation: sparkleAnimation 1.5s ease-in-out infinite; }
+.stat-card-enhanced:hover .sparkle-2 { animation-delay: 0.3s; }
 
-.stat-card-enhanced:hover .sparkle {
-  animation: sparkleAnimation 1.5s ease-in-out infinite;
-}
-
-.stat-card-enhanced:hover .sparkle-2 {
-  animation-delay: 0.3s;
-}
-
-@keyframes sparkleAnimation {
-
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Floating particles background */
+/* Partículas flotantes */
 .particle {
   position: absolute;
   background: radial-gradient(circle, var(--color-accent-light) 0%, transparent 70%);
@@ -386,138 +168,21 @@ h6 {
   animation: particleFloat 8s ease-in-out infinite;
 }
 
-.particle-1 {
-  width: 80px;
-  height: 80px;
-  top: 10%;
-  left: 10%;
-  animation-delay: 0s;
-}
+.particle-1 { width: 80px; height: 80px; top: 10%; left: 10%; animation-delay: 0s; }
+.particle-2 { width: 60px; height: 60px; top: 60%; right: 15%; animation-delay: 1.5s; }
+.particle-3 { width: 100px; height: 100px; bottom: 20%; left: 20%; animation-delay: 3s; }
+.particle-4 { width: 50px; height: 50px; top: 40%; right: 30%; animation-delay: 4.5s; }
+.particle-5 { width: 70px; height: 70px; bottom: 15%; right: 20%; animation-delay: 2s; }
 
-.particle-2 {
-  width: 60px;
-  height: 60px;
-  top: 60%;
-  right: 15%;
-  animation-delay: 1.5s;
-}
-
-.particle-3 {
-  width: 100px;
-  height: 100px;
-  bottom: 20%;
-  left: 20%;
-  animation-delay: 3s;
-}
-
-.particle-4 {
-  width: 50px;
-  height: 50px;
-  top: 40%;
-  right: 30%;
-  animation-delay: 4.5s;
-}
-
-.particle-5 {
-  width: 70px;
-  height: 70px;
-  bottom: 15%;
-  right: 20%;
-  animation-delay: 2s;
-}
-
-@keyframes particleFloat {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.1;
-  }
-
-  25% {
-    transform: translate(10px, -15px) scale(1.1);
-    opacity: 0.2;
-  }
-
-  50% {
-    transform: translate(-5px, -25px) scale(0.9);
-    opacity: 0.15;
-  }
-
-  75% {
-    transform: translate(15px, -10px) scale(1.05);
-    opacity: 0.25;
-  }
-}
-
-/* Border rotation animations */
-@keyframes borderRotate {
-  0% {
-    transform: rotate(6deg) scale(1);
-    opacity: 0.3;
-  }
-
-  50% {
-    transform: rotate(8deg) scale(1.02);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: rotate(6deg) scale(1);
-    opacity: 0.3;
-  }
-}
-
-@keyframes borderRotateReverse {
-  0% {
-    transform: rotate(-6deg) scale(1);
-    opacity: 0.2;
-  }
-
-  50% {
-    transform: rotate(-8deg) scale(1.02);
-    opacity: 0.4;
-  }
-
-  100% {
-    transform: rotate(-6deg) scale(1);
-    opacity: 0.2;
-  }
-}
-
-.animate-border-rotate {
-  animation: borderRotate 4s ease-in-out infinite;
-}
-
-.animate-border-rotate-reverse {
-  animation: borderRotateReverse 5s ease-in-out infinite;
-}
-
-/* Pulse slow para el glow background */
-@keyframes pulseSlow {
-
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-.animate-pulse-slow {
-  animation: pulseSlow 3s ease-in-out infinite;
-}
+.animate-border-rotate { animation: borderRotate 4s ease-in-out infinite; }
+.animate-border-rotate-reverse { animation: borderRotateReverse 5s ease-in-out infinite; }
+.animate-pulse-slow { animation: pulseSlow 3s ease-in-out infinite; }
 
 /* ==========================================================================
-   CARD HOVER EFFECTS
+   EFECTOS BÁSICOS
    ========================================================================== */
 .card-hover {
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .card-hover:hover {
@@ -525,9 +190,6 @@ h6 {
   box-shadow: 0 25px 50px -12px rgba(255, 107, 74, 0.15);
 }
 
-/* ==========================================================================
-   GRADIENT TEXT
-   ========================================================================== */
 .text-gradient {
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
   -webkit-background-clip: text;
@@ -535,52 +197,23 @@ h6 {
   background-clip: text;
 }
 
-/* ==========================================================================
-   VIDEO OVERLAY
-   ========================================================================== */
 .video-overlay {
-  background: linear-gradient(to bottom,
-      rgba(10, 10, 10, 0.4) 0%,
-      rgba(10, 10, 10, 0.6) 50%,
-      rgba(10, 10, 10, 0.95) 100%);
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.95) 100%);
 }
 
-/* ==========================================================================
-   CUSTOM SCROLLBAR
-   ========================================================================== */
-::-webkit-scrollbar {
-  width: 8px;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #171717; }
+::-webkit-scrollbar-thumb { background: #404040; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
 
-::-webkit-scrollbar-track {
-  background: #171717;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #404040;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
-}
-
-/* ==========================================================================
-   FAQ ANIMATION
-   ========================================================================== */
 .faq-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 }
 
-.faq-content.open {
-  max-height: 300px;
-}
+.faq-content.open { max-height: 300px; }
 
-/* ==========================================================================
-   PORTFOLIO HOVER
-   ========================================================================== */
 .portfolio-card .portfolio-cta {
   opacity: 0;
   transform: translateY(1rem);
@@ -593,7 +226,7 @@ h6 {
 }
 
 /* ==========================================================================
-   HEADER NAVIGATION - Hover Effects con barrita animada MEJORADO
+   HEADER NAVIGATION
    ========================================================================== */
 .nav-link {
   position: relative;
@@ -602,7 +235,6 @@ h6 {
   letter-spacing: 0.3px;
 }
 
-/* Barrita naranja animada con brillo */
 .nav-link::after {
   content: '';
   position: absolute;
@@ -623,7 +255,6 @@ h6 {
   box-shadow: 0 0 8px rgba(255, 107, 74, 0.6), 0 0 12px rgba(255, 107, 74, 0.4);
 }
 
-/* Efecto de brillo adicional más intenso */
 .nav-link::before {
   content: '';
   position: absolute;
@@ -642,27 +273,11 @@ h6 {
 .nav-link:hover::before {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-}
-
-/* Animación sutil de pulso en hover */
-@keyframes navPulse {
-
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  50% {
-    transform: translate(-50%, -50%) scale(1.05);
-  }
-}
-
-.nav-link:hover::before {
   animation: navPulse 2s ease-in-out infinite;
 }
 
 /* ==========================================================================
-   PROCESO - Claqueta de Cine con Animación
+   PROCESO - CLAQUETA
    ========================================================================== */
 .clapperboard {
   position: relative;
@@ -671,7 +286,6 @@ h6 {
   margin-bottom: 1.25rem;
 }
 
-/* Contenedor de la claqueta con el hinche */
 .clapper-hinge {
   position: relative;
   height: 80px;
@@ -679,17 +293,13 @@ h6 {
   perspective: 1000px;
 }
 
-/* Parte inferior fija */
 .clapper-base {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 32px;
-  background: linear-gradient(90deg,
-      rgba(255, 107, 74, 0.2),
-      rgba(255, 107, 74, 0.3),
-      rgba(255, 107, 74, 0.2));
+  background: linear-gradient(90deg, rgba(255, 107, 74, 0.2), rgba(255, 107, 74, 0.3), rgba(255, 107, 74, 0.2));
   border: 2px solid rgba(255, 107, 74, 0.4);
   border-radius: 0 0 0.75rem 0.75rem;
   display: flex;
@@ -698,30 +308,20 @@ h6 {
   padding: 0 1rem;
 }
 
-/* Líneas blancas y negras de la claqueta */
 .clapper-stripe {
   display: inline-block;
   width: 5px;
   height: 22px;
-  background: linear-gradient(90deg,
-      white 0%,
-      white 50%,
-      black 50%,
-      black 100%);
+  background: linear-gradient(90deg, white 0%, white 50%, black 50%, black 100%);
 }
 
-/* Parte móvil (se abre y cierra) */
 .clapper-top {
   position: absolute;
   top: -8px;
   left: 0;
   right: 0;
   height: 48px;
-  background: repeating-linear-gradient(45deg,
-      var(--color-accent),
-      var(--color-accent) 10px,
-      rgba(10, 10, 10, 0.6) 10px,
-      rgba(10, 10, 10, 0.6) 20px);
+  background: repeating-linear-gradient(45deg, var(--color-accent), var(--color-accent) 10px, rgba(10, 10, 10, 0.6) 10px, rgba(10, 10, 10, 0.6) 20px);
   border: 2px solid var(--color-accent);
   border-radius: 0.75rem 0.75rem 0 0;
   transform-origin: bottom center;
@@ -729,34 +329,6 @@ h6 {
   box-shadow: 0 4px 12px rgba(255, 107, 74, 0.3);
 }
 
-@keyframes clapperOpen {
-  0% {
-    transform: rotateX(0deg);
-    opacity: 1;
-  }
-
-  20% {
-    transform: rotateX(0deg);
-    opacity: 1;
-  }
-
-  50% {
-    transform: rotateX(-140deg);
-    opacity: 0.9;
-  }
-
-  70% {
-    transform: rotateX(-140deg);
-    opacity: 0.9;
-  }
-
-  100% {
-    transform: rotateX(0deg);
-    opacity: 1;
-  }
-}
-
-/* Texto de la claqueta */
 .clapper-info {
   position: relative;
   display: flex;
@@ -783,21 +355,6 @@ h6 {
   font-weight: 800;
 }
 
-/* Animación sutil de enfoque/desenfoque para efecto cinematográfico */
-@keyframes filmFlash {
-  0% {
-    box-shadow: inset 0 0 20px rgba(255, 107, 74, 0);
-  }
-
-  50% {
-    box-shadow: inset 0 0 30px rgba(255, 107, 74, 0.15);
-  }
-
-  100% {
-    box-shadow: inset 0 0 20px rgba(255, 107, 74, 0);
-  }
-}
-
 .process-card {
   animation: filmFlash 4s ease-in-out infinite;
   position: relative;
@@ -811,18 +368,13 @@ h6 {
   animation: clapperOpen 1.5s ease-in-out infinite;
 }
 
-/* Líneas cinematográficas decorativas en la parte inferior */
 .film-strip {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 6px;
-  background: repeating-linear-gradient(90deg,
-      var(--color-accent) 0px,
-      var(--color-accent) 3px,
-      transparent 3px,
-      transparent 12px);
+  background: repeating-linear-gradient(90deg, var(--color-accent) 0px, var(--color-accent) 3px, transparent 3px, transparent 12px);
   opacity: 0.08;
   border-radius: 0 0 0.5rem 0.5rem;
 }
@@ -833,10 +385,8 @@ h6 {
 }
 
 /* ==========================================================================
-   ANIMACIONES REPRESENTATIVAS POR PASO
+   ANIMACIONES POR PASO
    ========================================================================== */
-
-/* Paso 1: Planificación - Círculos concéntricos */
 .process-card:nth-child(1)::after {
   content: '';
   position: absolute;
@@ -851,23 +401,6 @@ h6 {
   transform: translate(0, -50%);
 }
 
-@keyframes concentricPulse {
-
-  0%,
-  100% {
-    width: 60px;
-    height: 60px;
-    opacity: 0.3;
-  }
-
-  50% {
-    width: 90px;
-    height: 90px;
-    opacity: 0.05;
-  }
-}
-
-/* Paso 2: Producción - Obturador de cámara */
 .process-card:nth-child(2)::after {
   content: '';
   position: absolute;
@@ -882,29 +415,6 @@ h6 {
   clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
 }
 
-@keyframes shutterClose {
-  0% {
-    clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
-  }
-
-  25% {
-    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
-  }
-
-  50% {
-    clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
-  }
-
-  75% {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-  }
-
-  100% {
-    clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%);
-  }
-}
-
-/* Paso 3: Edición - Línea de tiempo deslizante */
 .process-card:nth-child(3)::after {
   content: '';
   position: absolute;
@@ -917,21 +427,6 @@ h6 {
   animation: timelineSlide 3s ease-in-out infinite;
 }
 
-@keyframes timelineSlide {
-  0% {
-    transform: translateX(-30px);
-  }
-
-  50% {
-    transform: translateX(30px);
-  }
-
-  100% {
-    transform: translateX(-30px);
-  }
-}
-
-/* Paso 4: Publicación - Ondas de transmisión */
 .process-card:nth-child(4)::after {
   content: '';
   position: absolute;
@@ -945,20 +440,6 @@ h6 {
   animation: transmitWave 2.5s ease-in-out infinite;
 }
 
-@keyframes transmitWave {
-  0% {
-    width: 50px;
-    height: 50px;
-    opacity: 0.4;
-  }
-
-  100% {
-    width: 80px;
-    height: 80px;
-    opacity: 0;
-  }
-}
-
 /* ==========================================================================
    PORTAFOLIO - Background Animations
    Efectos de fondo fluidos y elegantes sin interferir con los videos
@@ -966,75 +447,8 @@ h6 {
 
 
 /* ==========================================================================
-   GLOW LIGHTS - Luces pulsantes con efecto glow
-   Crea profundidad y energía en la sección de portafolio
+   GLOW LIGHTS
    ========================================================================== */
-
-/* Animaciones de pulsación del glow - 4 variaciones con timings diferentes */
-@keyframes glowPulse1 {
-
-  0%,
-  100% {
-    opacity: 0.4;
-    filter: blur(60px);
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.8;
-    filter: blur(40px);
-    transform: scale(1.1);
-  }
-}
-
-@keyframes glowPulse2 {
-
-  0%,
-  100% {
-    opacity: 0.3;
-    filter: blur(50px);
-    transform: scale(0.95);
-  }
-
-  50% {
-    opacity: 0.7;
-    filter: blur(30px);
-    transform: scale(1.15);
-  }
-}
-
-@keyframes glowPulse3 {
-
-  0%,
-  100% {
-    opacity: 0.35;
-    filter: blur(55px);
-    transform: scale(1.05);
-  }
-
-  50% {
-    opacity: 0.75;
-    filter: blur(35px);
-    transform: scale(1.08);
-  }
-}
-
-@keyframes glowPulse4 {
-
-  0%,
-  100% {
-    opacity: 0.25;
-    filter: blur(45px);
-    transform: scale(0.9);
-  }
-
-  50% {
-    opacity: 0.65;
-    filter: blur(25px);
-    transform: scale(1.12);
-  }
-}
-
 .animate-glow-pulse-1 {
   animation: glowPulse1 4s ease-in-out infinite;
   will-change: opacity, filter, transform;
@@ -1055,293 +469,73 @@ h6 {
   will-change: opacity, filter, transform;
 }
 
-/* Glow light containers - Contenedores de luces */
-.glow-light-1,
-.glow-light-2,
-.glow-light-3,
-.glow-light-4,
-.glow-light-5 {
+.glow-light-1, .glow-light-2, .glow-light-3, .glow-light-4, .glow-light-5 {
   filter: drop-shadow(0 0 30px rgba(255, 107, 74, 0.3));
   will-change: filter;
 }
 
-.glow-light-1 {
-  animation: floatLight1 20s ease-in-out infinite;
-}
-
-.glow-light-2 {
-  animation: floatLight2 22s ease-in-out infinite;
-}
-
-.glow-light-3 {
-  animation: floatLight3 24s ease-in-out infinite;
-}
-
-.glow-light-4 {
-  animation: floatLight4 26s ease-in-out infinite;
-}
-
-.glow-light-5 {
-  animation: floatLight5 28s ease-in-out infinite;
-}
-
-/* Movimiento suave de las luces */
-@keyframes floatLight1 {
-
-  0%,
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-
-  25% {
-    transform: translateX(30px) translateY(-20px);
-  }
-
-  50% {
-    transform: translateX(-20px) translateY(20px);
-  }
-
-  75% {
-    transform: translateX(40px) translateY(10px);
-  }
-}
-
-@keyframes floatLight2 {
-
-  0%,
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-
-  25% {
-    transform: translateX(-40px) translateY(15px);
-  }
-
-  50% {
-    transform: translateX(30px) translateY(-25px);
-  }
-
-  75% {
-    transform: translateX(-15px) translateY(-10px);
-  }
-}
-
-@keyframes floatLight3 {
-
-  0%,
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-
-  25% {
-    transform: translateX(20px) translateY(30px);
-  }
-
-  50% {
-    transform: translateX(-35px) translateY(-15px);
-  }
-
-  75% {
-    transform: translateX(25px) translateY(-20px);
-  }
-}
-
-@keyframes floatLight4 {
-
-  0%,
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-
-  25% {
-    transform: translateX(-30px) translateY(-25px);
-  }
-
-  50% {
-    transform: translateX(35px) translateY(20px);
-  }
-
-  75% {
-    transform: translateX(-10px) translateY(15px);
-  }
-}
-
-@keyframes floatLight5 {
-
-  0%,
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-
-  25% {
-    transform: translateX(35px) translateY(20px);
-  }
-
-  50% {
-    transform: translateX(-25px) translateY(-30px);
-  }
-
-  75% {
-    transform: translateX(20px) translateY(-10px);
-  }
-}
+.glow-light-1 { animation: floatLight1 20s ease-in-out infinite; }
+.glow-light-2 { animation: floatLight2 22s ease-in-out infinite; }
+.glow-light-3 { animation: floatLight3 24s ease-in-out infinite; }
+.glow-light-4 { animation: floatLight4 26s ease-in-out infinite; }
+.glow-light-5 { animation: floatLight5 28s ease-in-out infinite; }
 
 
 /* ==========================================================================
-   HERO LOGO - Logo flotante de MadaMedia con efecto de flotación
+   HERO LOGO Y VIDEO
    ========================================================================== */
-
-/* Animación de flotación suave del logo */
-@keyframes floatLogo {
-
-  0%,
-  100% {
-    transform: translateY(0) rotateZ(0deg) scale(1);
-  }
-
-  25% {
-    transform: translateY(-15px) rotateZ(1deg) scale(1.02);
-  }
-
-  50% {
-    transform: translateY(-30px) rotateZ(0deg) scale(1);
-  }
-
-  75% {
-    transform: translateY(-10px) rotateZ(-1deg) scale(1.01);
-  }
-}
-
 .animate-float-logo {
   animation: floatLogo 5s ease-in-out infinite;
   will-change: transform;
 }
 
-/* Glow pulse para el fondo del logo - Muy sutil */
-@keyframes floatGlowPulse {
-
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.35;
-    transform: scale(1.05);
-  }
-}
-
-/* ==========================================================================
-   HERO VIDEO BACKGROUND - Gradiente diagonal para difuminar video
-   ========================================================================== */
-
-/* Gradiente diagonal que va de transparente a oscuro */
 .bg-gradient-diagonal {
-  background: linear-gradient(135deg,
-      transparent 0%,
-      transparent 20%,
-      rgba(0, 0, 0, 0.3) 40%,
-      rgba(0, 0, 0, 0.6) 60%,
-      rgba(0, 0, 0, 0.85) 80%,
-      rgba(0, 0, 0, 0.95) 100%);
+  background: linear-gradient(135deg, transparent 0%, transparent 20%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.85) 80%, rgba(0, 0, 0, 0.95) 100%);
   pointer-events: none;
 }
 
-/* Estilos adicionales para el video de fondo - Vimeo iframe */
-#heroVideo {
-  opacity: 0.25 !important;
-}
-
-#heroVideo iframe {
-  opacity: 0.3;
-}
+#heroVideo { opacity: 0.25 !important; }
+#heroVideo iframe { opacity: 0.3; }
 
 
-/* ===============================================
-   VIDEO DEL GRID — Estilo Pro
-   =============================================== */
-
-/* Hace que el video no aparezca los primeros ms
-   (evita el avatar, título y botones de YouTube)
-*/
+/* ==========================================================================
+   VIDEO DEL GRID
+   ========================================================================== */
 .video-card-embed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
   opacity: 0;
   filter: blur(0px);
-  /* si quieres blur, aumentamos aquí */
   animation: videoCardFadeIn 0.7s ease forwards;
   animation-delay: 0.55s;
-  /* Ajusta si ves YouTube cargando lento */
 }
 
-@keyframes videoCardFadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Opcional: para dejar los videos más tenues */
 .video-card-embed iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160%;
+  height: 160%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  object-fit: cover;
+  pointer-events: none;
   opacity: 0.75;
-  /* ajustable: 0.5 más tenue, 1.0 brillante */
   transition: opacity 0.3s ease;
 }
 
 .portfolio-card:hover .video-card-embed iframe {
   opacity: 1;
-  /* al pasar el mouse se ve más brillante */
-}
-
-/* Para que el iframe cubra siempre el card */
-.video-card-embed iframe {
-  object-fit: cover;
-}
-
-
-/* ============================
-   Videos del grid (YouTube Shorts)
-   ============================ */
-.video-card-embed {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-/* Recorte optimizado para formato vertical 9:16 (Reel/Stories)
-   Centra el encuadre en el sujeto y elimina bordes de YouTube */
-.video-card-embed iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* Escalado equilibrado para el grid - REVERTIDO al original */
-  width: 160%;
-  /* Ancho para recortar los lados sin zoom excesivo */
-  height: 160%;
-  /* Altura para recortar arriba/abajo sin zoom excesivo */
-  transform: translate(-50%, -50%);
-  border: 0;
-  object-fit: cover;
-  pointer-events: none;
-  /* Evita que se pueda hacer clic en el video del grid */
 }
 
 /* ==========================================================================
-   VIDEO MODAL - Controles personalizados
+   VIDEO MODAL
    ========================================================================== */
 #videoModal {
   animation: modalFadeIn 0.3s ease-out;
 }
 
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Controles personalizados del video */
 .video-controls {
   position: absolute;
   bottom: 2rem;
@@ -1358,7 +552,6 @@ h6 {
   z-index: 100;
   transition: all 0.3s ease;
   pointer-events: auto;
-  /* Asegurar que los controles sean interactivos */
 }
 
 .video-controls:hover {
@@ -1366,7 +559,6 @@ h6 {
   border-color: rgba(255, 107, 74, 0.4);
 }
 
-/* Botón de play/pausa */
 .control-btn {
   width: 40px;
   height: 40px;
@@ -1390,14 +582,12 @@ h6 {
   transform: scale(0.95);
 }
 
-/* Contenedor del slider de volumen */
 .volume-control {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-/* Icono de volumen */
 .volume-icon {
   color: #FF6B4A;
   width: 20px;
@@ -1410,7 +600,6 @@ h6 {
   transform: scale(1.1);
 }
 
-/* Slider de volumen personalizado */
 .volume-slider {
   width: 100px;
   height: 4px;
@@ -1454,15 +643,10 @@ h6 {
   box-shadow: 0 0 10px rgba(255, 107, 74, 0.5);
 }
 
-/* Track del slider */
 .volume-slider::-webkit-slider-runnable-track {
   width: 100%;
   height: 4px;
-  background: linear-gradient(to right, 
-    #FF6B4A 0%, 
-    #FF6B4A var(--volume-percentage, 100%), 
-    rgba(255, 255, 255, 0.2) var(--volume-percentage, 100%), 
-    rgba(255, 255, 255, 0.2) 100%);
+  background: linear-gradient(to right, #FF6B4A 0%, #FF6B4A var(--volume-percentage, 100%), rgba(255, 255, 255, 0.2) var(--volume-percentage, 100%), rgba(255, 255, 255, 0.2) 100%);
   border-radius: 2px;
 }
 
@@ -1480,10 +664,8 @@ h6 {
 }
 
 /* ==========================================================================
-   ANIMACIONES PROCESO - Efectos sorprendentes al hover
+   ANIMACIONES PROCESO
    ========================================================================== */
-
-/* Contenedor de paso del proceso con perspectiva 3D */
 #proceso .card-hover {
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -1492,19 +674,15 @@ h6 {
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Efecto 3D al hover - Levantamiento y rotación */
 #proceso .card-hover:hover {
   transform: translateY(-20px) rotateX(5deg) rotateY(5deg) scale(1.05);
-  box-shadow: 
-    0 20px 40px rgba(255, 107, 74, 0.2),
-    0 0 50px rgba(255, 107, 74, 0.1),
-    inset 0 0 15px rgba(255, 107, 74, 0.05);
+  box-shadow: 0 20px 40px rgba(255, 107, 74, 0.2), 0 0 50px rgba(255, 107, 74, 0.1), inset 0 0 15px rgba(255, 107, 74, 0.05);
   border-color: rgba(255, 107, 74, 0.4);
   background: linear-gradient(135deg, rgba(255, 107, 74, 0.08) 0%, rgba(23, 23, 23, 0.95) 50%);
   z-index: 10;
+  animation: cardFloat 3s ease-in-out infinite;
 }
 
-/* Número de paso - Animación más sutil */
 #proceso .card-hover .font-display {
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transform-origin: center;
@@ -1513,12 +691,9 @@ h6 {
 #proceso .card-hover:hover .font-display {
   transform: scale(1.15) rotate(5deg);
   color: rgba(255, 107, 74, 0.25) !important;
-  text-shadow: 
-    0 0 10px rgba(255, 107, 74, 0.3),
-    0 0 20px rgba(255, 107, 74, 0.15);
+  text-shadow: 0 0 10px rgba(255, 107, 74, 0.3), 0 0 20px rgba(255, 107, 74, 0.15);
 }
 
-/* Icono - Rotación y brillo reducido */
 #proceso .card-hover .bg-accent\/10 {
   transition: all 0.5s ease;
   position: relative;
@@ -1527,9 +702,7 @@ h6 {
 #proceso .card-hover:hover .bg-accent\/10 {
   background: rgba(255, 107, 74, 0.25);
   transform: rotate(360deg) scale(1.15);
-  box-shadow: 
-    0 0 20px rgba(255, 107, 74, 0.4),
-    0 0 35px rgba(255, 107, 74, 0.2);
+  box-shadow: 0 0 20px rgba(255, 107, 74, 0.4), 0 0 35px rgba(255, 107, 74, 0.2);
 }
 
 #proceso .card-hover:hover .bg-accent\/10 svg {
@@ -1537,12 +710,6 @@ h6 {
   animation: iconPulse 1s ease-in-out infinite;
 }
 
-@keyframes iconPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-}
-
-/* Título - Efecto de escritura dinámica sin expansión */
 #proceso .card-hover h3 {
   transition: all 0.4s ease;
   position: relative;
@@ -1570,7 +737,6 @@ h6 {
   width: 100%;
 }
 
-/* Texto descriptivo - Efecto fade in desde abajo */
 #proceso .card-hover p {
   transition: all 0.5s ease 0.1s;
   transform: translateY(0);
@@ -1583,7 +749,6 @@ h6 {
   color: rgba(255, 255, 255, 0.95);
 }
 
-/* Partículas flotantes al hover - más suave */
 #proceso .card-hover::before {
   content: '';
   position: absolute;
@@ -1591,9 +756,7 @@ h6 {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, 
-    rgba(255, 107, 74, 0.08) 0%, 
-    transparent 70%);
+  background: radial-gradient(circle, rgba(255, 107, 74, 0.08) 0%, transparent 70%);
   opacity: 0;
   transform: scale(0);
   transition: all 0.6s ease;
@@ -1606,7 +769,6 @@ h6 {
   transform: scale(1) rotate(180deg);
 }
 
-/* Efecto de brillo que recorre la tarjeta - más sutil */
 #proceso .card-hover::after {
   content: '';
   position: absolute;
@@ -1614,12 +776,7 @@ h6 {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 107, 74, 0.15),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 74, 0.15), transparent);
   transition: left 0.7s ease;
   pointer-events: none;
 }
@@ -1628,61 +785,25 @@ h6 {
   left: 100%;
 }
 
-/* Efecto ripple al hover */
-@keyframes ripple {
-  0% {
-    transform: scale(0.8);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
-}
-
-#proceso .card-hover:hover {
-  animation: cardFloat 3s ease-in-out infinite;
-}
-
-@keyframes cardFloat {
-  0%, 100% {
-    transform: translateY(-20px) rotateX(5deg) rotateY(5deg) scale(1.05);
-  }
-  50% {
-    transform: translateY(-25px) rotateX(7deg) rotateY(7deg) scale(1.05);
-  }
-}
-
-/* Sombras dinámicas que cambian de color - más sutiles */
 #proceso .card-hover:nth-child(1):hover {
-  box-shadow: 
-    0 20px 40px rgba(255, 107, 74, 0.25),
-    0 0 50px rgba(255, 107, 74, 0.15);
+  box-shadow: 0 20px 40px rgba(255, 107, 74, 0.25), 0 0 50px rgba(255, 107, 74, 0.15);
 }
 
 #proceso .card-hover:nth-child(2):hover {
-  box-shadow: 
-    0 20px 40px rgba(255, 139, 74, 0.25),
-    0 0 50px rgba(255, 139, 74, 0.15);
+  box-shadow: 0 20px 40px rgba(255, 139, 74, 0.25), 0 0 50px rgba(255, 139, 74, 0.15);
 }
 
 #proceso .card-hover:nth-child(3):hover {
-  box-shadow: 
-    0 20px 40px rgba(255, 107, 120, 0.25),
-    0 0 50px rgba(255, 107, 120, 0.15);
+  box-shadow: 0 20px 40px rgba(255, 107, 120, 0.25), 0 0 50px rgba(255, 107, 120, 0.15);
 }
 
 #proceso .card-hover:nth-child(4):hover {
-  box-shadow: 
-    0 20px 40px rgba(255, 150, 74, 0.25),
-    0 0 50px rgba(255, 150, 74, 0.15);
+  box-shadow: 0 20px 40px rgba(255, 150, 74, 0.25), 0 0 50px rgba(255, 150, 74, 0.15);
 }
 
 /* ==========================================================================
-   ANIMACIONES FAQ - Preguntas Frecuentes con vida y color
+   ANIMACIONES FAQ
    ========================================================================== */
-
-/* Contenedor FAQ con gradiente de fondo sutil */
 .faq-item {
   position: relative;
   overflow: hidden;
@@ -1692,17 +813,14 @@ h6 {
   backdrop-filter: blur(10px);
 }
 
-/* Efecto hover - Levitación y brillo */
 .faq-item:hover {
   transform: translateX(8px) translateY(-4px);
   background: linear-gradient(135deg, rgba(255, 107, 74, 0.08) 0%, rgba(23, 23, 23, 0.9) 100%);
   border-color: rgba(255, 107, 74, 0.35) !important;
-  box-shadow: 
-    -8px 8px 24px rgba(255, 107, 74, 0.15),
-    0 0 40px rgba(255, 107, 74, 0.08);
+  box-shadow: -8px 8px 24px rgba(255, 107, 74, 0.15), 0 0 40px rgba(255, 107, 74, 0.08);
+  animation: faqPulse 2s ease-in-out infinite;
 }
 
-/* Barra lateral de color al hover */
 .faq-item::before {
   content: '';
   position: absolute;
@@ -1719,7 +837,6 @@ h6 {
   opacity: 1;
 }
 
-/* Partículas de fondo animadas */
 .faq-item::after {
   content: '';
   position: absolute;
@@ -1739,7 +856,6 @@ h6 {
   transform: scale(1) rotate(180deg);
 }
 
-/* Botón FAQ con mejor hover */
 .faq-btn {
   position: relative;
   z-index: 1;
@@ -1761,7 +877,6 @@ h6 {
   text-shadow: 0 0 10px rgba(255, 107, 74, 0.2);
 }
 
-/* Icono de flecha con animación */
 .faq-icon {
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
@@ -1772,7 +887,6 @@ h6 {
   filter: drop-shadow(0 0 8px rgba(255, 107, 74, 0.5));
 }
 
-/* Cuando está abierto */
 .faq-item.active .faq-icon {
   transform: rotate(180deg);
   color: #FF6B4A !important;
@@ -1787,7 +901,6 @@ h6 {
   opacity: 1;
 }
 
-/* Contenido FAQ con animación suave */
 .faq-content {
   position: relative;
   overflow: hidden;
@@ -1799,34 +912,6 @@ h6 {
   transition: all 0.3s ease;
 }
 
-/* Efecto de brillo que cruza al hacer hover */
-@keyframes faqShine {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-.faq-item:hover {
-  animation: faqPulse 2s ease-in-out infinite;
-}
-
-@keyframes faqPulse {
-  0%, 100% {
-    box-shadow: 
-      -8px 8px 24px rgba(255, 107, 74, 0.15),
-      0 0 40px rgba(255, 107, 74, 0.08);
-  }
-  50% {
-    box-shadow: 
-      -8px 8px 32px rgba(255, 107, 74, 0.2),
-      0 0 50px rgba(255, 107, 74, 0.12);
-  }
-}
-
-/* Colores alternados para cada pregunta */
 .faq-item:nth-child(1) {
   background: linear-gradient(135deg, rgba(255, 107, 74, 0.03) 0%, rgba(23, 23, 23, 0.8) 100%);
 }
@@ -1847,7 +932,6 @@ h6 {
   background: linear-gradient(135deg, rgba(255, 107, 100, 0.03) 0%, rgba(23, 23, 23, 0.8) 100%);
 }
 
-/* Hover para cada color */
 .faq-item:nth-child(1):hover {
   background: linear-gradient(135deg, rgba(255, 107, 74, 0.08) 0%, rgba(23, 23, 23, 0.9) 100%);
   border-color: rgba(255, 107, 74, 0.35) !important;
@@ -1945,4 +1029,201 @@ h6 {
   .volume-slider {
     width: 60px;
   }
+}
+
+/* ==========================================================================
+   KEYFRAMES - Todas las animaciones
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes floatShape {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+@keyframes parallaxSlow {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
+
+@keyframes parallaxFast {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+@keyframes statCardEntrance {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes shimmerMove {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes sparkleAnimation {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  25% { transform: translate(10px, -15px) scale(1.1); opacity: 0.2; }
+  50% { transform: translate(-5px, -25px) scale(0.9); opacity: 0.15; }
+  75% { transform: translate(15px, -10px) scale(1.05); opacity: 0.25; }
+}
+
+@keyframes borderRotate {
+  0%, 100% { transform: rotate(6deg) scale(1); opacity: 0.3; }
+  50% { transform: rotate(8deg) scale(1.02); opacity: 0.5; }
+}
+
+@keyframes borderRotateReverse {
+  0%, 100% { transform: rotate(-6deg) scale(1); opacity: 0.2; }
+  50% { transform: rotate(-8deg) scale(1.02); opacity: 0.4; }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes navPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes clapperOpen {
+  0%, 20%, 100% { transform: rotateX(0deg); opacity: 1; }
+  50%, 70% { transform: rotateX(-140deg); opacity: 0.9; }
+}
+
+@keyframes filmFlash {
+  0%, 100% { box-shadow: inset 0 0 20px rgba(255, 107, 74, 0); }
+  50% { box-shadow: inset 0 0 30px rgba(255, 107, 74, 0.15); }
+}
+
+@keyframes concentricPulse {
+  0%, 100% { width: 60px; height: 60px; opacity: 0.3; }
+  50% { width: 90px; height: 90px; opacity: 0.05; }
+}
+
+@keyframes shutterClose {
+  0%, 100% { clip-path: polygon(50% 0%, 100% 0%, 100% 50%, 50% 50%); }
+  25% { clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%); }
+  50% { clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%); }
+  75% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+}
+
+@keyframes timelineSlide {
+  0%, 100% { transform: translateX(-30px); }
+  50% { transform: translateX(30px); }
+}
+
+@keyframes transmitWave {
+  0% { width: 50px; height: 50px; opacity: 0.4; }
+  100% { width: 80px; height: 80px; opacity: 0; }
+}
+
+@keyframes glowPulse1 {
+  0%, 100% { opacity: 0.4; filter: blur(60px); transform: scale(1); }
+  50% { opacity: 0.8; filter: blur(40px); transform: scale(1.1); }
+}
+
+@keyframes glowPulse2 {
+  0%, 100% { opacity: 0.3; filter: blur(50px); transform: scale(0.95); }
+  50% { opacity: 0.7; filter: blur(30px); transform: scale(1.15); }
+}
+
+@keyframes glowPulse3 {
+  0%, 100% { opacity: 0.35; filter: blur(55px); transform: scale(1.05); }
+  50% { opacity: 0.75; filter: blur(35px); transform: scale(1.08); }
+}
+
+@keyframes glowPulse4 {
+  0%, 100% { opacity: 0.25; filter: blur(45px); transform: scale(0.9); }
+  50% { opacity: 0.65; filter: blur(25px); transform: scale(1.12); }
+}
+
+@keyframes floatLight1 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(30px) translateY(-20px); }
+  50% { transform: translateX(-20px) translateY(20px); }
+  75% { transform: translateX(40px) translateY(10px); }
+}
+
+@keyframes floatLight2 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-40px) translateY(15px); }
+  50% { transform: translateX(30px) translateY(-25px); }
+  75% { transform: translateX(-15px) translateY(-10px); }
+}
+
+@keyframes floatLight3 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(20px) translateY(30px); }
+  50% { transform: translateX(-35px) translateY(-15px); }
+  75% { transform: translateX(25px) translateY(-20px); }
+}
+
+@keyframes floatLight4 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-30px) translateY(-25px); }
+  50% { transform: translateX(35px) translateY(20px); }
+  75% { transform: translateX(-10px) translateY(15px); }
+}
+
+@keyframes floatLight5 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(35px) translateY(20px); }
+  50% { transform: translateX(-25px) translateY(-30px); }
+  75% { transform: translateX(20px) translateY(-10px); }
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0) rotateZ(0deg) scale(1); }
+  25% { transform: translateY(-15px) rotateZ(1deg) scale(1.02); }
+  50% { transform: translateY(-30px) rotateZ(0deg) scale(1); }
+  75% { transform: translateY(-10px) rotateZ(-1deg) scale(1.01); }
+}
+
+@keyframes floatGlowPulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.05); }
+}
+
+@keyframes videoCardFadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(-20px) rotateX(5deg) rotateY(5deg) scale(1.05); }
+  50% { transform: translateY(-25px) rotateX(7deg) rotateY(7deg) scale(1.05); }
+}
+
+@keyframes faqPulse {
+  0%, 100% { box-shadow: -8px 8px 24px rgba(255, 107, 74, 0.15), 0 0 40px rgba(255, 107, 74, 0.08); }
+  50% { box-shadow: -8px 8px 32px rgba(255, 107, 74, 0.2), 0 0 50px rgba(255, 107, 74, 0.12); }
 }
