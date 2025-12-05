@@ -1,46 +1,59 @@
 ﻿// ============================================================================
-// MOUSE PARALLAX EFFECT - Efecto interactivo con el mouse
+// UTILIDAD: Throttle para optimización de eventos
+// ============================================================================
+function throttle(func, limit) {
+  let inThrottle;
+  return function(...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// ============================================================================
+// MOUSE PARALLAX EFFECT - Efecto interactivo con el mouse (optimizado)
 // ============================================================================
 document.addEventListener('DOMContentLoaded', function() {
   const parallaxSections = document.querySelectorAll('.mouse-parallax-section');
-  
+
+  // Configuración de capas para evitar repetición
+  const layers = [
+    { selector: '.parallax-layer-1', intensity: 0.15 },
+    { selector: '.parallax-layer-2', intensity: 0.25 },
+    { selector: '.parallax-layer-3', intensity: 0.35 }
+  ];
+
   parallaxSections.forEach(section => {
-    section.addEventListener('mousemove', function(e) {
+    const handleMouseMove = throttle(function(e) {
       const rect = section.getBoundingClientRect();
-      const x = e.clientX - rect.left; // Posición X del mouse relativa a la sección
-      const y = e.clientY - rect.top;  // Posición Y del mouse relativa a la sección
-      
-      // Calcular el porcentaje de movimiento (-50 a 50)
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
       const xPercent = ((x / rect.width) - 0.5) * 100;
       const yPercent = ((y / rect.height) - 0.5) * 100;
-      
-      // Aplicar el movimiento a cada capa con diferentes intensidades
-      const layer1Elements = section.querySelectorAll('.parallax-layer-1');
-      const layer2Elements = section.querySelectorAll('.parallax-layer-2');
-      const layer3Elements = section.querySelectorAll('.parallax-layer-3');
-      
-      layer1Elements.forEach(el => {
-        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
-        el.style.transform = `translate(${xPercent * 0.15}px, ${yPercent * 0.15}px) ${rotation}`;
+
+      layers.forEach(({ selector, intensity }) => {
+        section.querySelectorAll(selector).forEach(el => {
+          const rotation = el.style.transform.includes('rotate')
+            ? el.style.transform.match(/rotate\([^)]+\)/)[0]
+            : '';
+          el.style.transform = `translate(${xPercent * intensity}px, ${yPercent * intensity}px) ${rotation}`;
+        });
       });
-      
-      layer2Elements.forEach(el => {
-        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
-        el.style.transform = `translate(${xPercent * 0.25}px, ${yPercent * 0.25}px) ${rotation}`;
-      });
-      
-      layer3Elements.forEach(el => {
-        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
-        el.style.transform = `translate(${xPercent * 0.35}px, ${yPercent * 0.35}px) ${rotation}`;
-      });
-    });
-    
-    // Resetear al salir de la sección
+    }, 16); // ~60fps
+
+    section.addEventListener('mousemove', handleMouseMove);
+
     section.addEventListener('mouseleave', function() {
-      const allLayers = section.querySelectorAll('.parallax-layer-1, .parallax-layer-2, .parallax-layer-3');
-      allLayers.forEach(el => {
-        const rotation = el.style.transform.includes('rotate') ? el.style.transform.match(/rotate\([^)]+\)/)[0] : '';
-        el.style.transform = `translate(0, 0) ${rotation}`;
+      layers.forEach(({ selector }) => {
+        section.querySelectorAll(selector).forEach(el => {
+          const rotation = el.style.transform.includes('rotate')
+            ? el.style.transform.match(/rotate\([^)]+\)/)[0]
+            : '';
+          el.style.transform = `translate(0, 0) ${rotation}`;
+        });
       });
     });
   });
@@ -153,56 +166,6 @@ if (statsGrid) {
 // autoplay=1, loop=1, muted=1, background=1
 // No se requiere JavaScript adicional para controlar la reproducción
 
-// ============================================================================
-// VIDEO CAROUSEL - Carrusel automático de videos en "Sobre Nosotros"
-// ============================================================================
-
-let currentSlide = 0;
-const slides = document.querySelectorAll('.video-carousel-item');
-const dots = document.querySelectorAll('.carousel-dot');
-const totalSlides = slides.length;
-
-function showSlide(index) {
-  // Mantener el índice dentro del rango válido
-  if (index >= totalSlides) currentSlide = 0;
-  if (index < 0) currentSlide = totalSlides - 1;
-
-  // Actualizar visibilidad de los videos
-  slides.forEach((slide, i) => {
-    slide.style.opacity = i === currentSlide ? '1' : '0';
-  });
-
-  // Actualizar indicadores de puntos
-  dots.forEach((dot, i) => {
-    if (i === currentSlide) {
-      dot.style.width = '24px';
-      dot.style.backgroundColor = 'white';
-    } else {
-      dot.style.width = '8px';
-      dot.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-    }
-  });
-}
-
-function changeCarouselSlide(direction) {
-  currentSlide += direction;
-  showSlide(currentSlide);
-}
-
-function goToSlide(index) {
-  currentSlide = index;
-  showSlide(currentSlide);
-}
-
-// Auto-play del carrusel cada 8 segundos
-setInterval(() => {
-  changeCarouselSlide(1);
-}, 8000);
-
-// Inicializar el carrusel
-if (slides.length > 0) {
-  showSlide(0);
-}
 
 // ============================================================================
 // VIDEO MODAL - Lightbox para videos del portafolio con controles personalizados
