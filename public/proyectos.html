@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos - MadaMedia | Portafolio Completo</title>
+  <meta name="description"
+    content="Explora nuestro portafolio completo de proyectos. Videos comerciales, contenido para redes sociales y campañas publicitarias exitosas.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            display: ['Sora', 'sans-serif'],
+          },
+          colors: {
+            accent: {
+              DEFAULT: '#FF6B4A',
+              light: '#FF8A70',
+              dark: '#E55A3A',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* Estilos específicos para la página de proyectos */
+    .filter-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 107, 74, 0.1), rgba(255, 107, 74, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .filter-btn:hover::before,
+    .filter-btn.active::before {
+      opacity: 1;
+    }
+
+    .filter-btn.active {
+      background: rgba(255, 107, 74, 0.15);
+      border-color: #FF6B4A;
+      color: #FF6B4A;
+      box-shadow: 0 0 20px rgba(255, 107, 74, 0.2);
+    }
+
+    .project-item {
+      animation: projectFadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .project-item.hidden {
+      display: none;
+    }
+
+    @keyframes projectFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .breadcrumb-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .breadcrumb-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #FF6B4A;
+      transition: width 0.3s ease;
+    }
+
+    .breadcrumb-link:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body class="bg-neutral-950 text-neutral-100 antialiased">
+
+  <!-- ==========================================================================
+       HEADER - Navegación fija
+       ========================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-neutral-950/80 backdrop-blur-lg border-b border-neutral-800/50">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 group">
+          <img src="images/logo.png" alt="MadaMedia Logo"
+            class="h-12 lg:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="index.html#portafolio"
+            class="nav-link text-sm font-semibold text-white hover:text-accent transition-colors">Portafolio</a>
+          <a href="index.html#planes"
+            class="nav-link text-sm font-semibold text-white hover:text-accent transition-colors">Planes</a>
+          <a href="index.html#nosotros"
+            class="nav-link text-sm font-semibold text-white hover:text-accent transition-colors">Nosotros</a>
+          <a href="index.html#proceso"
+            class="nav-link text-sm font-semibold text-white hover:text-accent transition-colors">Proceso</a>
+          <a href="index.html#contacto"
+            class="nav-link text-sm font-semibold text-white hover:text-accent transition-colors">Contacto</a>
+        </div>
+
+        <!-- CTA Desktop -->
+        <a href="index.html#contacto"
+          class="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white text-sm font-medium rounded-full transition-all duration-300">
+          Cotiza Ahora
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="lg:hidden p-2 text-neutral-400 hover:text-white">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobileMenu" class="hidden lg:hidden py-4 border-t border-neutral-800/50">
+        <div class="flex flex-col gap-2">
+          <a href="index.html#portafolio"
+            class="px-4 py-3 text-sm font-medium text-neutral-400 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">Portafolio</a>
+          <a href="index.html#planes"
+            class="px-4 py-3 text-sm font-medium text-neutral-400 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">Planes</a>
+          <a href="index.html#nosotros"
+            class="px-4 py-3 text-sm font-medium text-neutral-400 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">Nosotros</a>
+          <a href="index.html#proceso"
+            class="px-4 py-3 text-sm font-medium text-neutral-400 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">Proceso</a>
+          <a href="index.html#contacto"
+            class="px-4 py-3 text-sm font-medium text-neutral-400 hover:bg-neutral-800 hover:text-white rounded-lg transition-colors">Contacto</a>
+          <a href="index.html#contacto"
+            class="mt-2 px-4 py-3 bg-accent hover:bg-accent-dark text-white text-sm font-medium rounded-lg transition-colors text-center">Cotiza
+            Ahora</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Spacer -->
+  <div class="h-16 lg:h-20"></div>
+
+  <!-- ==========================================================================
+       HERO SECTION - Encabezado de página
+       ========================================================================== -->
+  <section class="relative py-16 lg:py-24 overflow-hidden">
+    <!-- Elementos decorativos de fondo -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <!-- Glow lights animados -->
+      <div class="glow-light glow-light-1 absolute w-96 h-96 rounded-full"
+        style="top: 10%; left: 5%; background: radial-gradient(circle, rgba(255, 107, 74, 0.15), transparent 70%);"></div>
+      <div class="glow-light glow-light-2 absolute w-80 h-80 rounded-full"
+        style="top: 60%; right: 10%; background: radial-gradient(circle, rgba(255, 107, 74, 0.12), transparent 70%);"></div>
+      <div class="glow-light glow-light-3 absolute w-72 h-72 rounded-full"
+        style="bottom: 20%; left: 15%; background: radial-gradient(circle, rgba(255, 107, 74, 0.1), transparent 70%);"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-sm mb-8">
+        <a href="index.html" class="breadcrumb-link text-neutral-400 hover:text-accent transition-colors">Inicio</a>
+        <svg class="w-4 h-4 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+        <span class="text-accent">Proyectos</span>
+      </nav>
+
+      <!-- Título -->
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-display">
+          Nuestros <span class="text-gradient">Proyectos</span>
+        </h1>
+        <p class="text-neutral-400 text-lg mb-8">
+          Explora nuestra colección completa de trabajos. Cada proyecto es una historia de éxito construida con creatividad, estrategia y pasión.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FILTROS
+       ========================================================================== -->
+  <section class="relative py-8 border-y border-neutral-800/50 bg-neutral-900/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <button data-filter="all"
+          class="filter-btn active px-6 py-2.5 border border-neutral-700 rounded-full text-sm font-medium transition-all duration-300 hover:border-accent hover:text-accent">
+          Todos los Proyectos
+        </button>
+        <button data-filter="video"
+          class="filter-btn px-6 py-2.5 border border-neutral-700 rounded-full text-sm font-medium transition-all duration-300 hover:border-accent hover:text-accent">
+          Videos Comerciales
+        </button>
+        <button data-filter="social"
+          class="filter-btn px-6 py-2.5 border border-neutral-700 rounded-full text-sm font-medium transition-all duration-300 hover:border-accent hover:text-accent">
+          Redes Sociales
+        </button>
+        <button data-filter="branding"
+          class="filter-btn px-6 py-2.5 border border-neutral-700 rounded-full text-sm font-medium transition-all duration-300 hover:border-accent hover:text-accent">
+          Branding
+        </button>
+        <button data-filter="reels"
+          class="filter-btn px-6 py-2.5 border border-neutral-700 rounded-full text-sm font-medium transition-all duration-300 hover:border-accent hover:text-accent">
+          Reels / TikTok
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       GRID DE PROYECTOS
+       ========================================================================== -->
+  <section class="relative py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Grid -->
+      <div id="projectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Proyecto 1 -->
+        <article
+          class="project-item portfolio-card group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer card-hover"
+          data-category="video" data-video-id="SNk9XGD3AVk">
+          <div class="absolute inset-0 overflow-hidden video-card-embed">
+            <iframe
+              src="https://www.youtube.com/embed/SNk9XGD3AVk?controls=0&autoplay=1&mute=1&loop=1&playlist=SNk9XGD3AVk&modestbranding=1&rel=0&playsinline=1"
+              frameborder="0" allow="autoplay; fullscreen" class="w-full h-full" style="border:0;"></iframe>
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <span class="text-accent text-xs font-medium uppercase tracking-wider mb-2">Video Comercial</span>
+            <h3 class="text-xl font-semibold text-white mb-1 group-hover:text-accent transition-colors font-display">
+              Campaña Lanzamiento
+            </h3>
+            <p class="text-neutral-400 text-sm mb-4">Café Orgánico del Sur</p>
+            <div class="portfolio-cta flex items-center gap-2 text-white text-sm font-medium">
+              Ver proyecto completo
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 2 -->
+        <article
+          class="project-item portfolio-card group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer card-hover"
+          data-category="social" data-video-id="i2nEL6nnuTs">
+          <div class="absolute inset-0 overflow-hidden video-card-embed">
+            <iframe
+              src="https://www.youtube.com/embed/i2nEL6nnuTs?controls=0&autoplay=1&mute=1&loop=1&playlist=i2nEL6nnuTs&modestbranding=1&rel=0&playsinline=1"
+              frameborder="0" allow="autoplay; fullscreen" class="w-full h-full" style="border:0;"></iframe>
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <span class="text-accent text-xs font-medium uppercase tracking-wider mb-2">Social Media</span>
+            <h3 class="text-xl font-semibold text-white mb-1 group-hover:text-accent transition-colors font-display">
+              Contenido RRSS
+            </h3>
+            <p class="text-neutral-300 text-sm mb-4">Fitness Studio Pro</p>
+            <div class="portfolio-cta flex items-center gap-2 text-white text-sm font-medium">
+              Ver proyecto completo
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 3 -->
+        <article
+          class="project-item portfolio-card group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer card-hover"
+          data-category="branding" data-video-id="jugodTDkIas">
+          <div class="absolute inset-0 overflow-hidden video-card-embed">
+            <iframe
+              src="https://www.youtube.com/embed/jugodTDkIas?controls=0&autoplay=1&mute=1&loop=1&playlist=jugodTDkIas&modestbranding=1&rel=0&playsinline=1"
+              frameborder="0" allow="autoplay; fullscreen" class="w-full h-full" style="border:0;"></iframe>
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <span class="text-accent text-xs font-medium uppercase tracking-wider mb-2">Branding + Video</span>
+            <h3 class="text-xl font-semibold text-white mb-1 group-hover:text-accent transition-colors font-display">
+              Rebranding Digital
+            </h3>
+            <p class="text-neutral-300 text-sm mb-4">Artesanías María</p>
+            <div class="portfolio-cta flex items-center gap-2 text-white text-sm font-medium">
+              Ver proyecto completo
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 4 -->
+        <article
+          class="project-item portfolio-card group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer card-hover"
+          data-category="reels" data-video-id="orCXKE4NK0U">
+          <div class="absolute inset-0 overflow-hidden video-card-embed">
+            <iframe
+              src="https://www.youtube.com/embed/orCXKE4NK0U?controls=0&autoplay=1&mute=1&loop=1&playlist=orCXKE4NK0U&modestbranding=1&rel=0&playsinline=1"
+              frameborder="0" allow="autoplay; fullscreen" class="w-full h-full" style="border:0;"></iframe>
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <span class="text-accent text-xs font-medium uppercase tracking-wider mb-2">Reels / TikTok</span>
+            <h3 class="text-xl font-semibold text-white mb-1 group-hover:text-accent transition-colors font-display">
+              Serie de Reels
+            </h3>
+            <p class="text-neutral-400 text-sm mb-4">Tech Solutions</p>
+            <div class="portfolio-cta flex items-center gap-2 text-white text-sm font-medium">
+              Ver proyecto completo
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 5 -->
+        <article
+          class="project-item portfolio-card group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer card-hover"
+          data-category="video" data-video-id="5O___ai5CCM">
+          <div class="absolute inset-0 overflow-hidden video-card-embed">
+            <iframe
+              src="https://www.youtube.com/embed/5O___ai5CCM?controls=0&autoplay=1&mute=1&loop=1&playlist=5O___ai5CCM&modestbranding=1&rel=0&playsinline=1"
+              frameborder="0" allow="autoplay; fullscreen" class="w-full h-full" style="border:0;"></iframe>
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <span class="text-accent text-xs font-medium uppercase tracking-wider mb-2">Video Comercial</span>
+            <h3 class="text-xl font-semibold text-white mb-1 group-hover:text-accent transition-colors font-display">
+              Spot Publicitario
+            </h3>
+            <p class="text-neutral-400 text-sm mb-4">Restaurant Gourmet</p>
+            <div class="portfolio-cta flex items-center gap-2 text-white text-sm font-medium">
+              Ver proyecto completo
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 6 -->
+        <article
+          class="project-item portfolio-card group relative aspect-[9/16] rounded-2xl overflow-hidden cursor-pointer card-hover"
+          data-category="social" data-video-id="MjtJtE-8vbc">
+          <div class="absolute inset-0 overflow-hidden video-card-embed">
+            <iframe
+              src="https://www.youtube.com/embed/MjtJtE-8vbc?controls=0&autoplay=1&mute=1&loop=1&playlist=MjtJtE-8vbc&modestbranding=1&rel=0&playsinline=1"
+              frameborder="0" allow="autoplay; fullscreen" class="w-full h-full" style="border:0;">
+            </iframe>
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-end">
+            <span class="text-accent text-xs font-medium uppercase tracking-wider mb-2">Community Manager</span>
+            <h3 class="text-xl font-semibold text-white mb-1 group-hover:text-accent transition-colors font-display">
+              Gestión Completa
+            </h3>
+            <p class="text-neutral-400 text-sm mb-4">Boutique Moda</p>
+            <div class="portfolio-cta flex items-center gap-2 text-white text-sm font-medium">
+              Ver proyecto completo
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Contador de proyectos -->
+      <div class="mt-12 text-center">
+        <p class="text-neutral-500 text-sm">
+          Mostrando <span id="projectCount" class="text-accent font-semibold">6</span> proyectos
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CTA FINAL
+       ========================================================================== -->
+  <section class="relative py-20 lg:py-28 overflow-hidden border-t border-neutral-800/50">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="glow-light glow-light-4 absolute w-96 h-96 rounded-full"
+        style="top: 20%; right: 5%; background: radial-gradient(circle, rgba(255, 107, 74, 0.12), transparent 70%);"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 font-display">
+        ¿Listo para crear tu próximo <span class="text-gradient">proyecto exitoso?</span>
+      </h2>
+      <p class="text-neutral-400 text-lg mb-8 max-w-2xl mx-auto">
+        Trabajemos juntos para llevar tu marca al siguiente nivel con contenido que convierte.
+      </p>
+      <a href="index.html#contacto"
+        class="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent/20">
+        Comenzar Ahora
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="relative border-t border-neutral-800/50 bg-neutral-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <!-- Logo y descripción -->
+        <div>
+          <img src="images/logo.png" alt="MadaMedia Logo" class="h-12 mb-4">
+          <p class="text-neutral-400 text-sm">
+            Creamos contenido que conecta, inspira y convierte. Tu éxito es nuestra pasión.
+          </p>
+        </div>
+
+        <!-- Enlaces rápidos -->
+        <div>
+          <h3 class="text-white font-semibold mb-4">Enlaces Rápidos</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html#portafolio" class="text-neutral-400 hover:text-accent transition-colors text-sm">Portafolio</a></li>
+            <li><a href="index.html#planes" class="text-neutral-400 hover:text-accent transition-colors text-sm">Planes</a></li>
+            <li><a href="index.html#nosotros" class="text-neutral-400 hover:text-accent transition-colors text-sm">Nosotros</a></li>
+            <li><a href="index.html#contacto" class="text-neutral-400 hover:text-accent transition-colors text-sm">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Redes sociales -->
+        <div>
+          <h3 class="text-white font-semibold mb-4">Síguenos</h3>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-accent transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/madamediagroup/" target="_blank" class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-accent transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-accent transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-8 border-t border-neutral-800/50 text-center text-neutral-500 text-sm">
+        <p>&copy; 2024 MadaMedia. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       VIDEO MODAL
+       ========================================================================== -->
+  <div id="videoModal"
+    class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm hidden items-center justify-center p-4">
+    <!-- Contenedor del video -->
+    <div class="relative w-full max-w-5xl aspect-[9/16] rounded-2xl overflow-hidden">
+      <div id="modalVideoContainer" class="w-full h-full">
+        <!-- El iframe se insertará aquí dinámicamente -->
+      </div>
+
+      <!-- Botón cerrar -->
+      <button id="closeModal"
+        class="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center text-white hover:text-accent transition-colors">
+        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Sistema de filtros
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    const projectCount = document.getElementById('projectCount');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remover clase active de todos los botones
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Agregar clase active al botón clickeado
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        let visibleCount = 0;
+
+        projectItems.forEach((item, index) => {
+          const category = item.getAttribute('data-category');
+
+          if (filter === 'all' || category === filter) {
+            item.classList.remove('hidden');
+            // Animar entrada con delay escalonado
+            setTimeout(() => {
+              item.style.animationDelay = `${index * 0.1}s`;
+            }, 10);
+            visibleCount++;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        // Actualizar contador
+        projectCount.textContent = visibleCount;
+      });
+    });
+
+    // Video Modal
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const videoModal = document.getElementById('videoModal');
+    const modalVideoContainer = document.getElementById('modalVideoContainer');
+    const closeModal = document.getElementById('closeModal');
+
+    portfolioCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const videoId = card.getAttribute('data-video-id');
+
+        // Crear iframe de YouTube
+        const iframe = document.createElement('iframe');
+        iframe.id = 'youtube-player';
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1&rel=0&playsinline=1`;
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; fullscreen';
+        iframe.style.cssText = 'border:0; width:100%; height:100%;';
+
+        // Limpiar contenedor y agregar nuevo iframe
+        modalVideoContainer.innerHTML = '';
+        modalVideoContainer.appendChild(iframe);
+
+        // Mostrar modal
+        videoModal.classList.remove('hidden');
+        videoModal.classList.add('flex');
+      });
+    });
+
+    // Cerrar modal
+    function closeVideoModal() {
+      videoModal.classList.add('hidden');
+      videoModal.classList.remove('flex');
+      modalVideoContainer.innerHTML = '';
+    }
+
+    closeModal.addEventListener('click', closeVideoModal);
+
+    // Cerrar modal al hacer click fuera del video
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        closeVideoModal();
+      }
+    });
+
+    // Cerrar modal con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !videoModal.classList.contains('hidden')) {
+        closeVideoModal();
+      }
+    });
+
+    // Animación de entrada de proyectos
+    window.addEventListener('load', () => {
+      projectItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.style.opacity = '1';
+        }, index * 100);
+      });
+    });
+  </script>
+</body>
+
+</html>
