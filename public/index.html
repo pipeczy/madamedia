@@ -1440,16 +1440,19 @@
 
       <!-- Contact Form -->
       <div class="max-w-xl mx-auto bg-neutral-900/80 border border-neutral-800 rounded-2xl p-6 lg:p-8 mb-12">
-        <form class="space-y-4">
+        <!-- Mensaje de respuesta -->
+        <div id="formResponse" class="hidden mb-4 p-4 rounded-lg text-center font-medium"></div>
+
+        <form id="contactForm" class="space-y-4">
           <div class="grid sm:grid-cols-2 gap-4">
-            <input type="text" placeholder="Nombre"
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required
               class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:border-accent transition-colors">
-            <input type="email" placeholder="Email"
+            <input type="email" name="email" id="email" placeholder="Email" required
               class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:border-accent transition-colors">
           </div>
-          <input type="text" placeholder="Empresa / Marca"
+          <input type="text" name="empresa" id="empresa" placeholder="Empresa / Marca" required
             class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:border-accent transition-colors">
-          <select id="planSelect"
+          <select name="plan" id="planSelect"
             class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white focus:outline-none focus:border-accent transition-colors">
             <option value="">Selecciona un plan</option>
             <option value="esencial">RRSS Esencial</option>
@@ -1457,11 +1460,12 @@
             <option value="full">RRSS Full</option>
             <option value="carta">A la Carta - Cotización</option>
           </select>
-          <textarea placeholder="Cuéntanos sobre tu proyecto..." rows="4"
+          <textarea name="mensaje" id="mensaje" placeholder="Cuéntanos sobre tu proyecto..." rows="4" required
             class="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:border-accent transition-colors resize-none"></textarea>
-          <button type="submit"
-            class="w-full py-4 bg-accent hover:bg-accent-dark text-white font-medium rounded-lg transition-all duration-300 hover:scale-[1.02]">
-            Enviar Mensaje
+          <button type="submit" id="submitBtn"
+            class="w-full py-4 bg-accent hover:bg-accent-dark text-white font-medium rounded-lg transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed">
+            <span id="btnText">Enviar Mensaje</span>
+            <span id="btnLoader" class="hidden">Enviando...</span>
           </button>
         </form>
       </div>
@@ -1618,6 +1622,83 @@
             this.classList.add('text-neutral-500');
           }
         });
+      }
+    });
+
+    // Manejo del formulario de contacto
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnLoader = document.getElementById('btnLoader');
+      const formResponse = document.getElementById('formResponse');
+
+      // Deshabilitar botón y mostrar loader
+      submitBtn.disabled = true;
+      btnText.classList.add('hidden');
+      btnLoader.classList.remove('hidden');
+
+      // Ocultar mensaje previo
+      formResponse.classList.add('hidden');
+
+      // Obtener datos del formulario
+      const formData = new FormData(this);
+
+      try {
+        const response = await fetch('send-email.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        // Mostrar mensaje de respuesta
+        formResponse.classList.remove('hidden');
+
+        if (data.success) {
+          // Éxito
+          formResponse.className = 'mb-4 p-4 rounded-lg text-center font-medium bg-green-500/20 border border-green-500 text-green-400';
+          formResponse.textContent = data.message;
+
+          // Limpiar formulario
+          this.reset();
+
+          // Resetear color del select
+          const planSelect = document.getElementById('planSelect');
+          if (planSelect) {
+            planSelect.classList.remove('text-white');
+            planSelect.classList.add('text-neutral-500');
+          }
+
+          // Ocultar mensaje después de 5 segundos
+          setTimeout(() => {
+            formResponse.classList.add('hidden');
+          }, 5000);
+
+        } else {
+          // Error
+          formResponse.className = 'mb-4 p-4 rounded-lg text-center font-medium bg-red-500/20 border border-red-500 text-red-400';
+
+          if (data.errors && data.errors.length > 0) {
+            formResponse.innerHTML = '<strong>' + data.message + '</strong><ul class="mt-2 text-sm">' +
+              data.errors.map(error => '<li>• ' + error + '</li>').join('') + '</ul>';
+          } else {
+            formResponse.textContent = data.message;
+          }
+        }
+
+      } catch (error) {
+        // Error de red o servidor
+        formResponse.classList.remove('hidden');
+        formResponse.className = 'mb-4 p-4 rounded-lg text-center font-medium bg-red-500/20 border border-red-500 text-red-400';
+        formResponse.textContent = 'Error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente a contacto@madamedia.cl';
+        console.error('Error:', error);
+      } finally {
+        // Rehabilitar botón
+        submitBtn.disabled = false;
+        btnText.classList.remove('hidden');
+        btnLoader.classList.add('hidden');
       }
     });
   </script>
